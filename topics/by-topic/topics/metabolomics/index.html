@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Galaxy Training!</title>
+        
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-45719423-18' , 'auto');
+            ga('send', 'pageview');
+        </script>
+        
+        <link rel="stylesheet" href="/training-material/assets/css/bootstrap.min.css?v=3">
+        <link rel="stylesheet" href="/training-material/assets/css/bootstrap-toc.min.css">
+        <link rel="stylesheet" href="/training-material/assets/css/main.css?v=2">
+        <link rel="stylesheet" href="/training-material/assets/css/font-awesome.css">
+        <link rel="stylesheet" href="/training-material/assets/css/academicons.css">
+        <link rel="stylesheet" href="/training-material/assets/css/syntax_highlighting.css">
+        <link rel="shortcut icon" href="/training-material/favicon.ico" type="image/x-icon" />
+
+        
+        
+        
+        
+        
+        <meta name="description" content="Training material to analyse Metabolomics data in Galaxy ..." />
+        <meta property="og:title" content="Galaxy Training: Metabolomics" />
+        <meta property="og:description" content="Training material to analyse Metabolomics data in Galaxy ..." />
+        <meta property="og:image" content="/training-material/assets/images/GTNLogo1000.png" />
+    </head>
+    <body data-spy="scroll" data-target="#toc">
+        <header>
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/training-material/">
+                <img src="/training-material/assets/images/GTN-60px.png" height="30" alt="Galaxy Training Network logo">
+                Galaxy Training!
+            </a>
+
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#top-navbar" aria-controls="top-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="top-navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                         <a class="nav-link" href="/training-material/hall-of-fame" title="Hall of Fame">
+                            <i class="fa fa-users" aria-hidden="true"></i><span class="visually-hidden">hall-of-fame</span> Contributors
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/galaxyproject/training-material" title="View on GitHub">
+                            <i class="fa fa-github" aria-hidden="true"></i><span class="visually-hidden">github</span> View on GitHub
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Help">
+        <i class="fa fa-life-ring" aria-hidden="true"></i><span class="visually-hidden">help</span> Help
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+        <form method="get" action="https://tess.elixir-europe.org/materials">
+            <input type="text" id="search" name="q" value="" style="margin-left: 0.5em;/*! border-radius: 0px; */">
+            <input type="hidden" value="Galaxy Training" name="content_provider">
+            <input type="submit" value="Search on TeSS" style="width: 92%;border-radius: 0px;margin: 0.5em;background: #f47d20;border: 0px;padding: 0.25em;" class="">
+        </form>
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/training-material/faq" title="Check our FAQ">
+            FAQ
+        </a>
+        <a class="dropdown-item" href="https://gitter.im/Galaxy-Training-Network/Lobby" title="Chat on Gitter">
+            Chat on Gitter
+        </a>
+        <a class="dropdown-item" href="https://help.galaxyproject.org/" title="Discuss on Galaxy Help">
+            Discuss on Galaxy Help
+        </a>
+    </div>
+</li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+
+
+
+<div class="container main-content">
+    <section>
+        <h1>Metabolomics</h1>
+        <p>Training material to analyse Metabolomics data in Galaxy - LCMS, FIAMS, GCMS and NMR<br/>Most of the training are using the tools from the <a href='http://workflow4metabolomics.org/'>Workflow4Metabolomics</a> (W4M) project.</p>
+
+        
+        <h2 id="requirements">Requirements</h2>
+        <p>Before diving into this topic, we recommend you to have a look at:</p>
+
+        <ul>
+            
+    <li>
+    
+        
+        
+        <a href="/training-material/topics/introduction">Introduction to Galaxy Analyses</a>
+        
+    
+    </li>
+
+        </ul>
+        
+
+        <h2 id="material">Material</h2>
+        <table class="table table-responsive table-striped">
+            <tr>
+                <th>Lesson</th>
+                <th>Slides</th>
+                <th>Hands-on</th>
+
+                
+                <th>Input dataset</th>
+                <th>Workflows</th>
+                <th>Galaxy tour</th>
+                
+
+                
+            </tr>
+
+            
+                
+                        <script type="application/ld+json">
+                            
+
+
+{
+  "@context": "http://schema.org",
+  "@type": "Course",
+  "accessMode": [
+    "textual",
+    "visual"
+  ],
+  "accessModeSufficient": [
+    "textual",
+    "visual"
+  ],
+  "accessibilityControl": [
+    "fullKeyboardControl",
+    "fullMouseControl"
+  ],
+  "accessibilityFeature": [
+    "alternativeText",
+    "tableOfContents"
+  ],
+  "accessibilitySummary": "Short descriptions are present but long descriptions will be needed for non-visual users",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "students"
+  },
+  "citation": {
+    "@type": "CreativeWork",
+    "name": "Community-Driven Data Analysis Training for Biology",
+    "url": "https://doi.org/10.1016/j.cels.2018.05.012"
+  },
+  "copyrightHolder": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "discussionUrl": "https://gitter.im/Galaxy-Training-Network/Lobby",
+  "headline": "Introduction to Metabolomics",
+  "inLanguage": {
+    "@type": "Language",
+    "name": "English",
+    "alternateName": "en"
+  },
+  "interactivityType": "mixed",
+  "isAccessibleForFree": true,
+  "license": "/blob//LICENSE.md",
+  "producer": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "provider": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "sourceOrganization": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "courseCode": "metabolomics / introduction / ",
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Metabolomics",
+    "description": "Training material to analyse Metabolomics data in Galaxy - LCMS, FIAMS, GCMS and NMR<br/>Most of the training are using the tools from the <a href='http://workflow4metabolomics.org/'>Workflow4Metabolomics</a> (W4M) project.",
+    "url": "https://galaxyproject.github.io//training-material/topics/metabolomics/"
+  },
+  "learningResourceType": "slides",
+  "name": "Introduction to 'Metabolomics'",
+  "url": "https://galaxyproject.github.io//training-material",
+  "description": "Introduction to Metabolomics",
+  "coursePrerequisites": [
+    {
+      "@type": "CreativeWork",
+      "url": "https://galaxyproject.github.io//training-material/topics/introduction/",
+      "name": "Introduction to Galaxy Analyses",
+      "description": "Introduction to Galaxy Analyses",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    }
+  ],
+  "hasPart": [
+
+  ],
+  "mentions": [
+
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Gildas Le Corguillé"
+    },
+    {
+      "@type": "Person",
+      "name": "Cécile Canlet"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "name": "Gildas Le Corguillé"
+    },
+    {
+      "@type": "Person",
+      "name": "Cécile Canlet"
+    }
+  ],
+  "about": [
+    {
+      "@type": "CreativeWork",
+      "name": "Metabolomics",
+      "description": "Training material to analyse Metabolomics data in Galaxy - LCMS, FIAMS, GCMS and NMR<br/>Most of the training are using the tools from the <a href='http://workflow4metabolomics.org/'>Workflow4Metabolomics</a> (W4M) project.",
+      "url": "https://galaxyproject.github.io//training-material/topics/metabolomics/"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "http://edamontology.org/topic_3172",
+      "inDefinedTermSet": "http://edamontology.org",
+      "termCode": "topic_3172",
+      "url": "https://bioportal.bioontology.org/ontologies/EDAM/?p=classes&conceptid=http%3A%2F%2Fedamontology.org%2Ftopic_3172"
+    }
+  ]
+}
+                        </script>
+                    <tr>
+                        <td>
+                            Introduction to Metabolomics
+                            <div class="">
+                            
+                            
+                        </div>
+                        </td>
+                        
+                            <td>
+                                
+                                <a class="topic-icon" href="/training-material/topics/metabolomics/slides/introduction.html">
+                                  <i class="fa fa-slideshare" aria-hidden="true"></i><span class="visually-hidden">slides</span>
+                                </a>
+                                
+                            </td>
+                            <td></td>
+                            
+                                <td></td>
+                                <td></td>
+                            
+                            
+                        
+                    </tr>
+                
+            
+                
+            
+                
+                        <script type="application/ld+json">
+                            
+
+
+{
+  "@context": "http://schema.org",
+  "@type": "Course",
+  "accessMode": [
+    "textual",
+    "visual"
+  ],
+  "accessModeSufficient": [
+    "textual",
+    "visual"
+  ],
+  "accessibilityControl": [
+    "fullKeyboardControl",
+    "fullMouseControl"
+  ],
+  "accessibilityFeature": [
+    "alternativeText",
+    "tableOfContents"
+  ],
+  "accessibilitySummary": "Short descriptions are present but long descriptions will be needed for non-visual users",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "students"
+  },
+  "citation": {
+    "@type": "CreativeWork",
+    "name": "Community-Driven Data Analysis Training for Biology",
+    "url": "https://doi.org/10.1016/j.cels.2018.05.012"
+  },
+  "copyrightHolder": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "discussionUrl": "https://gitter.im/Galaxy-Training-Network/Lobby",
+  "headline": "Mass spectrometry imaging: Examining the spatial distribution of analytes",
+  "inLanguage": {
+    "@type": "Language",
+    "name": "English",
+    "alternateName": "en"
+  },
+  "interactivityType": "mixed",
+  "isAccessibleForFree": true,
+  "license": "/blob//LICENSE.md",
+  "producer": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "provider": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "sourceOrganization": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "courseCode": "metabolomics / msi-analyte-distribution",
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Metabolomics",
+    "description": "Training material to analyse Metabolomics data in Galaxy - LCMS, FIAMS, GCMS and NMR<br/>Most of the training are using the tools from the <a href='http://workflow4metabolomics.org/'>Workflow4Metabolomics</a> (W4M) project.",
+    "url": "https://galaxyproject.github.io//training-material/topics/metabolomics/"
+  },
+  "learningResourceType": "tutorial",
+  "name": "Mass spectrometry imaging: Examining the spatial distribution of analytes",
+  "description": "Mass spectrometry imaging: Examining the spatial distribution of analytes",
+  "coursePrerequisites": [
+    {
+      "@type": "CreativeWork",
+      "url": "https://galaxyproject.github.io//training-material/topics/introduction/",
+      "name": "Introduction to Galaxy Analyses",
+      "description": "Introduction to Galaxy Analyses",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/metabolomics/tutorials/msi-analyte-distribution/tutorial.html",
+      "name": "Hands-on for 'Mass spectrometry imaging: Examining the spatial distribution of analytes' tutorial",
+      "learningResourceType": "hands-on tutorial",
+      "interactivityType": "expositive"
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/metabolomics/tutorials/msi-analyte-distribution/slides.html",
+      "name": "Slides for 'Mass spectrometry imaging: Examining the spatial distribution of analytes' tutorial",
+      "learningResourceType": "slides",
+      "interactivityType": "expositive"
+    }
+  ],
+  "mentions": [
+    [
+      {
+        "@type": "Thing",
+        "url": "/blob//topics/metabolomics/tutorials/msi-analyte-distribution/workflows/foellmelanie",
+        "name": "Workflow for Mass spectrometry imaging: Examining the spatial distribution of analytes tutorial"
+      }
+    ]
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Melanie Foell"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "name": "Melanie Foell"
+    }
+  ],
+  "about": [
+    {
+      "@type": "CreativeWork",
+      "name": "Metabolomics",
+      "description": "Training material to analyse Metabolomics data in Galaxy - LCMS, FIAMS, GCMS and NMR<br/>Most of the training are using the tools from the <a href='http://workflow4metabolomics.org/'>Workflow4Metabolomics</a> (W4M) project.",
+      "url": "https://galaxyproject.github.io//training-material/topics/metabolomics/"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "http://edamontology.org/topic_3172",
+      "inDefinedTermSet": "http://edamontology.org",
+      "termCode": "topic_3172",
+      "url": "https://bioportal.bioontology.org/ontologies/EDAM/?p=classes&conceptid=http%3A%2F%2Fedamontology.org%2Ftopic_3172"
+    }
+  ]
+}
+                        </script>
+                    <tr>
+                        <td>
+                            Mass spectrometry imaging: Examining the spatial distribution of analytes
+                            <div class="">
+                            
+                            
+                        </div>
+                        </td>
+                        
+                            <td>
+                                
+
+                            </td>
+                            <td>
+                                
+    <span class="btn-group">
+        <a href="/training-material/topics/metabolomics/tutorials/msi-analyte-distribution/tutorial.html" class="btn btn-default" title="Where to run the tutorial">
+            <i class="fa fa-laptop" aria-hidden="true"></i><span class="visually-hidden">tutorial</span>
+        </a>
+        <a href="#" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+        </a>
+        <ul class="dropdown-menu">
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=fr&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fmetabolomics%2Ftutorials%2Fmsi-analyte-distribution%2Ftutorial.html&edit-text=&act=url" title="">
+                FR
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ja&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fmetabolomics%2Ftutorials%2Fmsi-analyte-distribution%2Ftutorial.html&edit-text=&act=url" title="">
+                JA
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=es&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fmetabolomics%2Ftutorials%2Fmsi-analyte-distribution%2Ftutorial.html&edit-text=&act=url" title="">
+                ES
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=pt&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fmetabolomics%2Ftutorials%2Fmsi-analyte-distribution%2Ftutorial.html&edit-text=&act=url" title="">
+                PT
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ar&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fmetabolomics%2Ftutorials%2Fmsi-analyte-distribution%2Ftutorial.html&edit-text=&act=url" title="">
+                AR
+            </a>
+        
+    </span>
+
+
+                            </td>
+
+                            
+                                <td>
+                                    
+<a class="topic-icon" href="https://zenodo.org/record/484496">
+    <i class="fa fa-files-o" aria-hidden="true"></i><span class="visually-hidden">zenodo_link</span>
+</a>
+
+
+                                </td>
+                                <td>
+                                    
+    <a class="topic-icon" href="https://github.com/galaxyproject/training-material/tree/master/topics/metabolomics/tutorials/msi-analyte-distribution/workflows/" title="Workflows" alt="Mass spectrometry imaging: Examining the spatial distribution of analytes workflows">
+        <i class="fa fa-share-alt" aria-hidden="true"></i><span class="visually-hidden">workflow</span>
+    </a>
+
+
+                                </td>
+                                <td>
+                                    
+
+                                </td>
+                            
+
+                            <td>
+                                
+
+                            </td>
+                        
+                    </tr>
+                
+            
+                
+                        <script type="application/ld+json">
+                            
+
+
+{
+  "@context": "http://schema.org",
+  "@type": "Course",
+  "accessMode": [
+    "textual",
+    "visual"
+  ],
+  "accessModeSufficient": [
+    "textual",
+    "visual"
+  ],
+  "accessibilityControl": [
+    "fullKeyboardControl",
+    "fullMouseControl"
+  ],
+  "accessibilityFeature": [
+    "alternativeText",
+    "tableOfContents"
+  ],
+  "accessibilitySummary": "Short descriptions are present but long descriptions will be needed for non-visual users",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "students"
+  },
+  "citation": {
+    "@type": "CreativeWork",
+    "name": "Community-Driven Data Analysis Training for Biology",
+    "url": "https://doi.org/10.1016/j.cels.2018.05.012"
+  },
+  "copyrightHolder": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "discussionUrl": "https://gitter.im/Galaxy-Training-Network/Lobby",
+  "headline": "Mass spectrometry imaging: Finding differential analytes",
+  "inLanguage": {
+    "@type": "Language",
+    "name": "English",
+    "alternateName": "en"
+  },
+  "interactivityType": "mixed",
+  "isAccessibleForFree": true,
+  "license": "/blob//LICENSE.md",
+  "producer": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "provider": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "sourceOrganization": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "courseCode": "metabolomics / msi-finding-nglycans",
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Metabolomics",
+    "description": "Training material to analyse Metabolomics data in Galaxy - LCMS, FIAMS, GCMS and NMR<br/>Most of the training are using the tools from the <a href='http://workflow4metabolomics.org/'>Workflow4Metabolomics</a> (W4M) project.",
+    "url": "https://galaxyproject.github.io//training-material/topics/metabolomics/"
+  },
+  "learningResourceType": "tutorial",
+  "name": "Mass spectrometry imaging: Finding differential analytes",
+  "description": "Mass spectrometry imaging: Finding differential analytes",
+  "coursePrerequisites": [
+    {
+      "@type": "CreativeWork",
+      "url": "https://galaxyproject.github.io//training-material/topics/introduction/",
+      "name": "Introduction to Galaxy Analyses",
+      "description": "Introduction to Galaxy Analyses",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/metabolomics/tutorials/msi-finding-nglycans/tutorial.html",
+      "name": "Hands-on for 'Mass spectrometry imaging: Finding differential analytes' tutorial",
+      "learningResourceType": "hands-on tutorial",
+      "interactivityType": "expositive"
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/metabolomics/tutorials/msi-finding-nglycans/slides.html",
+      "name": "Slides for 'Mass spectrometry imaging: Finding differential analytes' tutorial",
+      "learningResourceType": "slides",
+      "interactivityType": "expositive"
+    }
+  ],
+  "mentions": [
+    [
+      {
+        "@type": "Thing",
+        "url": "/blob//topics/metabolomics/tutorials/msi-finding-nglycans/workflows/foellmelanie",
+        "name": "Workflow for Mass spectrometry imaging: Finding differential analytes tutorial"
+      }
+    ]
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Melanie Foell"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "name": "Melanie Foell"
+    }
+  ],
+  "about": [
+    {
+      "@type": "CreativeWork",
+      "name": "Metabolomics",
+      "description": "Training material to analyse Metabolomics data in Galaxy - LCMS, FIAMS, GCMS and NMR<br/>Most of the training are using the tools from the <a href='http://workflow4metabolomics.org/'>Workflow4Metabolomics</a> (W4M) project.",
+      "url": "https://galaxyproject.github.io//training-material/topics/metabolomics/"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "http://edamontology.org/topic_3172",
+      "inDefinedTermSet": "http://edamontology.org",
+      "termCode": "topic_3172",
+      "url": "https://bioportal.bioontology.org/ontologies/EDAM/?p=classes&conceptid=http%3A%2F%2Fedamontology.org%2Ftopic_3172"
+    }
+  ]
+}
+                        </script>
+                    <tr>
+                        <td>
+                            Mass spectrometry imaging: Finding differential analytes
+                            <div class="">
+                            
+                            
+                        </div>
+                        </td>
+                        
+                            <td>
+                                
+
+                            </td>
+                            <td>
+                                
+    <span class="btn-group">
+        <a href="/training-material/topics/metabolomics/tutorials/msi-finding-nglycans/tutorial.html" class="btn btn-default" title="Where to run the tutorial">
+            <i class="fa fa-laptop" aria-hidden="true"></i><span class="visually-hidden">tutorial</span>
+        </a>
+        <a href="#" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+        </a>
+        <ul class="dropdown-menu">
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=fr&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fmetabolomics%2Ftutorials%2Fmsi-finding-nglycans%2Ftutorial.html&edit-text=&act=url" title="">
+                FR
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ja&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fmetabolomics%2Ftutorials%2Fmsi-finding-nglycans%2Ftutorial.html&edit-text=&act=url" title="">
+                JA
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=es&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fmetabolomics%2Ftutorials%2Fmsi-finding-nglycans%2Ftutorial.html&edit-text=&act=url" title="">
+                ES
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=pt&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fmetabolomics%2Ftutorials%2Fmsi-finding-nglycans%2Ftutorial.html&edit-text=&act=url" title="">
+                PT
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ar&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fmetabolomics%2Ftutorials%2Fmsi-finding-nglycans%2Ftutorial.html&edit-text=&act=url" title="">
+                AR
+            </a>
+        
+    </span>
+
+
+                            </td>
+
+                            
+                                <td>
+                                    
+<a class="topic-icon" href="https://zenodo.org/record/2628280">
+    <i class="fa fa-files-o" aria-hidden="true"></i><span class="visually-hidden">zenodo_link</span>
+</a>
+
+
+                                </td>
+                                <td>
+                                    
+    <a class="topic-icon" href="https://github.com/galaxyproject/training-material/tree/master/topics/metabolomics/tutorials/msi-finding-nglycans/workflows/" title="Workflows" alt="Mass spectrometry imaging: Finding differential analytes workflows">
+        <i class="fa fa-share-alt" aria-hidden="true"></i><span class="visually-hidden">workflow</span>
+    </a>
+
+
+                                </td>
+                                <td>
+                                    
+
+                                </td>
+                            
+
+                            <td>
+                                
+
+                            </td>
+                        
+                    </tr>
+                
+            
+        </table>
+
+        
+            <h2 id="docker_image">Galaxy instances</h2>
+            <p>You can use a public Galaxy instance which has been tested for the availability of the used tools. They are listed along with the tutorials above.</p>
+            
+        
+
+        <h2 id="maintainers">Maintainers</h2>
+        <p>This material is maintained by:</p>
+        
+        
+
+<a href="/training-material/hall-of-fame#lecorguille" class="contributor-badge"><img src="https://avatars.githubusercontent.com/lecorguille" alt="Gildas Le Corguillé">Gildas Le Corguillé</a>, <a href="/training-material/hall-of-fame#foellmelanie" class="contributor-badge"><img src="https://avatars.githubusercontent.com/foellmelanie" alt="Melanie Foell">Melanie Foell</a>
+
+
+
+        <p>
+            <em>For any question related to this topic and the content, you can contact them or visit our <a href="https://gitter.im/Galaxy-Training-Network/Lobby">Gitter channel</a>.</em>
+        </p>
+
+        <h2 id="contributors">Contributors</h2>
+        <p>This material was contributed to by:</p>
+        
+        
+        
+        
+
+<a href="/training-material/hall-of-fame#lecorguille" class="contributor-badge"><img src="https://avatars.githubusercontent.com/lecorguille" alt="Gildas Le Corguillé">Gildas Le Corguillé</a>, <a href="/training-material/hall-of-fame#cecilecanlet" class="contributor-badge"><img src="https://avatars.githubusercontent.com/cecilecanlet" alt="Cécile Canlet">Cécile Canlet</a>, <a href="/training-material/hall-of-fame#foellmelanie" class="contributor-badge"><img src="https://avatars.githubusercontent.com/foellmelanie" alt="Melanie Foell">Melanie Foell</a>
+
+
+
+        
+    </section>
+</div>
+
+<footer>
+    <div class="container">
+        <p>
+            The <a href="https://galaxyproject.org/teach/gtn/">Galaxy Training Network</a>
+            provides researchers with online training materials, connects them with local trainers, and helps promoting open data analysis practices worldwide.
+        </p>
+    </div>
+</footer>
+
+
+    </body>
+    <script type="text/javascript" src="/training-material/assets/js/jquery.slim.min.js"></script>
+    <script type="text/javascript" src="/training-material/assets/js/popper.min.js"></script>
+    <script type="text/javascript" src="/training-material/assets/js/bootstrap.min.js?v=3"></script>
+    <script type="text/javascript" src="/training-material/assets/js/details-element-polyfill.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="/training-material/assets/js/bootstrap-toc.min.js"></script>
+    <script type="text/javascript" src="/training-material/assets/js/main.js"></script>
+
+    <script type="text/javascript" src="/training-material/assets/js/clipboard.min.js"></script>
+    <script type="text/javascript">
+    var snippets=document.querySelectorAll('div.highlight');
+    [].forEach.call(snippets,function(snippet){
+        snippet.firstChild.insertAdjacentHTML('beforebegin','<button class="btn btn-light" data-clipboard-snippet><i class="fa fa-copy"></i>&nbsp;Copy</button>');
+    });
+
+    var clipboardSnippets=new ClipboardJS('[data-clipboard-snippet]',{
+        target:function(trigger){return trigger.nextElementSibling;
+    }});
+    </script>
+</html>
