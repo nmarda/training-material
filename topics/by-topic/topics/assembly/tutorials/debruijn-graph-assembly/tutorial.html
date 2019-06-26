@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>De Bruijn Graph Assembly</title>
+        
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-45719423-18' , 'auto');
+            ga('send', 'pageview');
+        </script>
+        
+        <link rel="stylesheet" href="/training-material/assets/css/bootstrap.min.css?v=3">
+        <link rel="stylesheet" href="/training-material/assets/css/bootstrap-toc.min.css">
+        <link rel="stylesheet" href="/training-material/assets/css/main.css?v=2">
+        <link rel="stylesheet" href="/training-material/assets/css/font-awesome.css">
+        <link rel="stylesheet" href="/training-material/assets/css/academicons.css">
+        <link rel="stylesheet" href="/training-material/assets/css/syntax_highlighting.css">
+        <link rel="shortcut icon" href="/training-material/favicon.ico" type="image/x-icon" />
+
+        
+        
+        
+        
+        
+        <meta name="description" content="DNA sequence data has become an indispensable tool for Mo..." />
+        <meta property="og:title" content="Galaxy Training: De Bruijn Graph Assembly" />
+        <meta property="og:description" content="DNA sequence data has become an indispensable tool for Mo..." />
+        <meta property="og:image" content="/training-material/assets/images/GTNLogo1000.png" />
+    </head>
+    <body data-spy="scroll" data-target="#toc">
+        
+
+
+
+
+
+
+
+
+
+
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/training-material/">
+                <img src="/training-material/assets/images/GTN-60px.png" height="30" alt="Galaxy Training Network logo">
+                Galaxy Training!
+            </a>
+
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#top-navbar" aria-controls="top-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="top-navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/training-material/topics/assembly" title="Go back to list of tutorials">
+                            <i class="fa fa-folder-o" aria-hidden="true"></i><span class="visually-hidden">topic</span> Assembly
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="EN">
+                            EN
+                        </a>
+                        <div class="dropdown-menu">
+                            
+                            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=fr&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fdebruijn-graph-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                                FR
+                            </a>
+                            
+                            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ja&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fdebruijn-graph-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                                JA
+                            </a>
+                            
+                            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=es&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fdebruijn-graph-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                                ES
+                            </a>
+                            
+                            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=pt&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fdebruijn-graph-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                                PT
+                            </a>
+                            
+                            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ar&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fdebruijn-graph-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                                AR
+                            </a>
+                            
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Help">
+        <i class="fa fa-life-ring" aria-hidden="true"></i><span class="visually-hidden">help</span> Help
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+        <form method="get" action="https://tess.elixir-europe.org/materials">
+            <input type="text" id="search" name="q" value="" style="margin-left: 0.5em;/*! border-radius: 0px; */">
+            <input type="hidden" value="Galaxy Training" name="content_provider">
+            <input type="submit" value="Search on TeSS" style="width: 92%;border-radius: 0px;margin: 0.5em;background: #f47d20;border: 0px;padding: 0.25em;" class="">
+        </form>
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/training-material/faq" title="Check our FAQ">
+            FAQ
+        </a>
+        <a class="dropdown-item" href="https://gitter.im/Galaxy-Training-Network/Lobby" title="Chat on Gitter">
+            Chat on Gitter
+        </a>
+        <a class="dropdown-item" href="https://help.galaxyproject.org/" title="Discuss on Galaxy Help">
+            Discuss on Galaxy Help
+        </a>
+    </div>
+</li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/galaxyproject/training-material/edit/master/topics/assembly/tutorials/debruijn-graph-assembly/tutorial.md">
+                            <i class="fa fa-github" aria-hidden="true"></i><span class="visually-hidden">github</span> Edit
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container main-content">
+    <script type="application/ld+json">
+        
+
+
+{
+  "@context": "http://schema.org",
+  "@type": "Course",
+  "accessMode": [
+    "textual",
+    "visual"
+  ],
+  "accessModeSufficient": [
+    "textual",
+    "visual"
+  ],
+  "accessibilityControl": [
+    "fullKeyboardControl",
+    "fullMouseControl"
+  ],
+  "accessibilityFeature": [
+    "alternativeText",
+    "tableOfContents"
+  ],
+  "accessibilitySummary": "Short descriptions are present but long descriptions will be needed for non-visual users",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "students"
+  },
+  "citation": {
+    "@type": "CreativeWork",
+    "name": "Community-Driven Data Analysis Training for Biology",
+    "url": "https://doi.org/10.1016/j.cels.2018.05.012"
+  },
+  "copyrightHolder": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "discussionUrl": "https://gitter.im/Galaxy-Training-Network/Lobby",
+  "headline": "De Bruijn Graph Assembly",
+  "inLanguage": {
+    "@type": "Language",
+    "name": "English",
+    "alternateName": "en"
+  },
+  "interactivityType": "mixed",
+  "isAccessibleForFree": true,
+  "license": "/blob//LICENSE.md",
+  "producer": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "provider": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "sourceOrganization": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "courseCode": "assembly / debruijn-graph-assembly / hands-on",
+  "learningResourceType": "hands-on tutorial",
+  "name": "Hands-on for 'De Bruijn Graph Assembly' tutorial",
+  "isPartOf": {
+    "@type": "Course",
+    "name": "De Bruijn Graph Assembly",
+    "description": "De Bruijn Graph Assembly",
+    "learningResourceType": "tutorial",
+    "interactivityType": "expositive",
+    "provider": {
+      "@type": "Organization",
+      "email": "galaxytrainingnetwork@gmail.com",
+      "name": "Galaxy Training Network",
+      "url": "https://galaxyproject.org/teach/gtn/"
+    }
+  },
+  "url": "https://galaxyproject.github.io//training-material/topics/assembly/tutorials/debruijn-graph-assembly/tutorial.html",
+  "timeRequired": "PT2H",
+  "description": "De Bruijn Graph Assembly\\nThe questions this  addresses are:\n - What are the factors that affect genome assembly?\n - How does Genome assembly work?\n\n\\nThe objectives are:\n - Perform an optimised Velvet assembly with the Velvet Optimiser\n - Compare this assembly with those we did in the basic tutorial\n - Perform an assembly using the SPAdes assembler.\n\n",
+  "coursePrerequisites": [
+    {
+      "@type": "CreativeWork",
+      "url": "https://galaxyproject.github.io//training-material/topics/introduction/",
+      "name": "Introduction to Galaxy Analyses",
+      "description": "Introduction to Galaxy Analyses",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/sequence-analysis/tutorials/quality-control/slides.html",
+      "name": "Quality Control",
+      "description": "Slides for 'Quality Control' tutorial",
+      "learningResourceType": "slides",
+      "interactivityType": "expositive",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html",
+      "name": "Quality Control",
+      "description": "Hands-on for 'Quality Control' tutorial",
+      "learningResourceType": "hands-on tutorial",
+      "interactivityType": "expositive",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    }
+  ],
+  "hasPart": [
+
+  ],
+  "mentions": [
+    {
+      "@type": "Thing",
+      "url": "https://doi.org/10.5281/zenodo.582600",
+      "name": "Training data for De Bruijn Graph Assembly tutorial"
+    }
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Simon Gladman"
+    },
+    {
+      "@type": "Person",
+      "name": "Helena Rasche"
+    },
+    {
+      "@type": "Person",
+      "name": "Saskia Hiltemann"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "name": "Simon Gladman"
+    },
+    {
+      "@type": "Person",
+      "name": "Helena Rasche"
+    },
+    {
+      "@type": "Person",
+      "name": "Saskia Hiltemann"
+    }
+  ],
+  "about": [
+    {
+      "@type": "CreativeWork",
+      "name": "Assembly",
+      "description": "DNA sequence data has become an indispensable tool for Molecular Biology & Evolutionary Biology. Study in these fields now require a genome sequence to work from. We call this a 'Reference Sequence.' We need to build a reference for each species. We do this by Genome Assembly. De novo Genome Assembly is the process of reconstructing the original DNA sequence from the fragment reads alone.",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/"
+    }
+  ]
+}
+    </script>
+
+    <section class="tutorial">
+        <h1 data-toc-skip>De Bruijn Graph Assembly</h1>
+        <div class="contributors-line">By: 
+
+<a href="/training-material/hall-of-fame#slugger70" class="contributor-badge"><img src="https://avatars.githubusercontent.com/slugger70" alt="Simon Gladman">Simon Gladman</a>, <a href="/training-material/hall-of-fame#erasche" class="contributor-badge"><img src="https://avatars.githubusercontent.com/erasche" alt="Helena Rasche">Helena Rasche</a>, <a href="/training-material/hall-of-fame#shiltemann" class="contributor-badge"><img src="https://avatars.githubusercontent.com/shiltemann" alt="Saskia Hiltemann">Saskia Hiltemann</a>
+
+</div>
+        <blockquote class="overview">
+            <h3>Overview</h3>
+            <strong><i class="fa fa-question-circle" aria-hidden="true"></i><span class="visually-hidden">question</span> Questions</strong>
+            <ul>
+            
+            <li>What are the factors that affect genome assembly?</li>
+            
+            <li>How does Genome assembly work?</li>
+            
+            </ul>
+
+            <strong><i class="fa fa-bullseye" aria-hidden="true"></i><span class="visually-hidden">objectives</span> Objectives</strong>
+            <ul>
+            
+            <li>Perform an optimised Velvet assembly with the Velvet Optimiser</li>
+            
+            <li>Compare this assembly with those we did in the basic tutorial</li>
+            
+            <li>Perform an assembly using the SPAdes assembler.</li>
+            
+            </ul>
+
+            
+            <strong><i class="fa fa-check-circle" aria-hidden="true"></i><span class="visually-hidden">requirements</span> Requirements</strong>
+            <ul>
+            
+    <li>
+    
+        
+        
+        <a href="/training-material/topics/introduction">Introduction to Galaxy Analyses</a>
+        
+    
+    </li>
+
+    <li>
+    
+        
+        
+        <a href="/training-material/topics/sequence-analysis">Sequence analysis</a>
+        
+            <ul>
+                
+                    
+                        
+                    
+                        
+                            
+                            <li> Quality Control:
+                            
+                                <a href="/training-material/topics/sequence-analysis/tutorials/quality-control/slides.html"><i class="fa fa-slideshare" aria-hidden="true"></i><span class="visually-hidden">slides</span> slides</a>
+                                
+                            
+                            
+                                
+                                    - <a href="/training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html"><i class="fa fa-laptop" aria-hidden="true"></i><span class="visually-hidden">tutorial</span> hands-on</a>
+                                
+                            
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+            </ul>
+        
+    
+    </li>
+
+            
+            </ul>
+            
+
+            
+            <p><strong><i class="fa fa-hourglass-end" aria-hidden="true"></i><span class="visually-hidden">time</span> Time estimation:</strong> 2 hours</p>
+            
+
+            
+
+
+
+            <div>
+                <div><strong><i class="fa fa-external-link" aria-hidden="true"></i> Supporting Materials</strong></div>
+                <div id="supporting_materials">
+                    <ul>
+                        <li>
+                            <div>
+                    
+                    <div>
+                        <a class="topic-icon" href="/training-material/topics/assembly/tutorials/debruijn-graph-assembly/slides.html" title="Slides for this tutorial">
+                            <i class="fa fa-slideshare" aria-hidden="true"></i><span class="visually-hidden">slides</span> Slides
+                        </a>
+                    </div>
+                    
+
+                    
+                    <div>
+                        
+<a class="topic-icon" href="https://doi.org/10.5281/zenodo.582600">
+    <i class="fa fa-files-o" aria-hidden="true"></i><span class="visually-hidden">zenodo_link</span> Datasets
+</a>
+
+
+                    </div>
+                    
+
+                    
+                    <div>
+                        
+    <a class="topic-icon" href="https://github.com/galaxyproject/training-material/tree/master/topics/assembly/tutorials/debruijn-graph-assembly/workflows/" title="Workflows" alt="De Bruijn Graph Assembly workflows">
+        <i class="fa fa-share-alt" aria-hidden="true"></i><span class="visually-hidden">workflow</span> Workflows
+    </a>
+
+
+                    </div>
+                    
+                    
+                    <div>
+                        
+<a class="topic-icon" href="https://github.com/galaxyproject/training-material/tree/master/topics/assembly/tutorials/debruijn-graph-assembly/tours/">
+    <i class="fa fa-magic" aria-hidden="true"></i><span class="visually-hidden">interactive_tour</span> Tours
+</a>
+
+
+                    </div>
+                    
+
+
+                    
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </blockquote>
+
+        <div class="container">
+            <div class="row">
+                <!-- sidebar, which will move to the top on a small screen -->
+                <div class="col-sm-2">
+                    <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
+                </div>
+                <div class="col-sm-10">
+                    <h1 id="optimised-de-bruijn-graph-assemblies-using-the-velvet-optimiser-and-spades">Optimised de Bruijn Graph assemblies using the Velvet Optimiser and SPAdes</h1>
+
+<p>In this activity, we will perform <em>de novo</em> assemblies of a short read set using the Velvet Optimiser and the SPAdes assemblers. We are using the Velvet Optimiser for illustrative purposes. For real assembly work, a more suitable assembler should be chosen - such as SPAdes.</p>
+
+<p>The Velvet Optimiser is a script written by Simon Gladman to optimise the k-mer size and coverage cutoff parameters for Velvet. More information can be found <a href="https://github.com/slugger70/VelvetOptimiser">here</a></p>
+
+<p>SPAdes is a de novo genome assembler written by Pavel Pevzner’s group in St. Petersburg. More details on it can be found <a href="http://cab.spbu.ru/software/spades/">here</a></p>
+
+<blockquote class="agenda">
+  <h3 id="agenda">Agenda</h3>
+
+  <p>In this tutorial, we will deal with:</p>
+
+  <ol>
+    <li><a href="#get-the-data">Get the data</a></li>
+    <li><a href="#assembly-with-the-velvet-optimiser">Assemble with the Velvet Optimiser</a></li>
+    <li><a href="#assemble-with-spades">Assemble with SPAdes</a></li>
+  </ol>
+</blockquote>
+
+<h1 id="get-the-data">Get the data</h1>
+
+<p>We will be using the same data that we used in the introductory tutorial, so if you have already completed that and have the data, skip this section.</p>
+
+<blockquote class="notranslate hands_on">
+  <h3 id="hands_on-hands-on-getting-the-data"><i class="fa fa-pencil" aria-hidden="true"></i><span class="visually-hidden">hands_on</span> Hands-on: Getting the data</h3>
+
+  <ol>
+    <li>
+      <p>Create and name a new history for this tutorial.</p>
+
+      <blockquote class="tip">
+
+        <h3 id="tip-tip-creating-a-new-history"><i class="fa fa-lightbulb-o" aria-hidden="true"></i><span class="visually-hidden">tip</span> Tip: Creating a new history</h3>
+
+        <p>Click the <i class="fa fa-plus" aria-hidden="true"></i><span class="visually-hidden">new-history</span> icon at the top of the history panel</p>
+
+        <p>If the <i class="fa fa-plus" aria-hidden="true"></i><span class="visually-hidden">new-history</span> is missing:</p>
+        <ol>
+          <li>Click on the <i class="fa fa-cog" aria-hidden="true"></i><span class="visually-hidden">galaxy-gear</span> icon (<strong>History options</strong>) on the top of the history panel</li>
+          <li>Select the option <strong>Create New</strong> from the menu</li>
+        </ol>
+      </blockquote>
+    </li>
+    <li>
+      <p>Import the sequence read raw data (*.fastq) from <a href="https://zenodo.org/record/582600">Zenodo</a></p>
+
+      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://zenodo.org/record/582600/files/mutant_R1.fastq
+https://zenodo.org/record/582600/files/mutant_R2.fastq
+</code></pre></div>      </div>
+
+      <blockquote class="tip">
+
+        <h3 id="tip-tip-importing-data-via-links"><i class="fa fa-lightbulb-o" aria-hidden="true"></i><span class="visually-hidden">tip</span> Tip: Importing data via links</h3>
+
+        <ul>
+          <li>Copy the link location</li>
+          <li>
+            <p>Open the Galaxy Upload Manager (<i class="fa fa fa-upload" aria-hidden="true"></i><span class="visually-hidden">galaxy-upload</span> on the top-right of the tool panel)</p>
+          </li>
+          <li>Select <strong>Paste/Fetch Data</strong></li>
+          <li>
+            <p>Paste the link into the text field</p>
+          </li>
+          <li>
+            <p>Press <strong>Start</strong></p>
+          </li>
+          <li><strong>Close</strong> the window</li>
+        </ul>
+
+        <p>By default, Galaxy uses the URL as the name, so rename the files with a more useful name.</p>
+      </blockquote>
+    </li>
+    <li>
+      <p>Rename the files <i class="fa fa-pencil" aria-hidden="true"></i><span class="visually-hidden">galaxy-pencil</span></p>
+      <ul>
+        <li>The name of the files are the full URL, let’s make the names a little clearer</li>
+        <li>Change the names to just the last part, <code class="highlighter-rouge">Mutant_R1.fastq</code>, <code class="highlighter-rouge">Mutant_R2.fastq</code>  respectively</li>
+      </ul>
+
+      <blockquote class="tip">
+
+        <h3 id="tip-tip-renaming-a-dataset"><i class="fa fa-lightbulb-o" aria-hidden="true"></i><span class="visually-hidden">tip</span> Tip: Renaming a dataset</h3>
+        <ul>
+          <li>Click on the <i class="fa fa-pencil" aria-hidden="true"></i><span class="visually-hidden">galaxy-pencil</span> <strong>pencil icon</strong> for the dataset to edit its attributes</li>
+          <li>In the central panel, change the <strong>Name</strong> field</li>
+          <li>Click the <strong>Save</strong> button</li>
+        </ul>
+      </blockquote>
+
+      <blockquote class="question">
+        <h3 id="question-questions"><i class="fa fa-question-circle" aria-hidden="true"></i><span class="visually-hidden">question</span> Questions</h3>
+
+        <ol>
+          <li>What are four key features of a FASTQ file?</li>
+          <li>What is the main difference between a FASTQ and a FASTA file?</li>
+        </ol>
+      </blockquote>
+    </li>
+  </ol>
+
+</blockquote>
+
+<h1 id="assembly-with-the-velvet-optimiser">Assembly with the Velvet Optimiser</h1>
+
+<p>We will perform an assembly with the Velvet Optimiser, which automatically runs and optimises the output of the Velvet assembler (<a class="citation" href="#Velvet2008">Zerbino and Birney 2008</a>). It will automatically choose a suitable value for the k-mer size (<strong>k</strong>). It will then go on to optimise the coverage cutoff (<strong>cov_cutoff</strong>) which corrects for read errors. It will use the “<em>n50</em>” metric for optimising the k-mer size and the “<em>total number of bases in contigs</em>” for optimising the coverage cutoff.</p>
+
+<blockquote class="notranslate hands_on">
+  <h3 id="hands_on-hands-on-assemble-with-the-velvet-optimiser"><i class="fa fa-pencil" aria-hidden="true"></i><span class="visually-hidden">hands_on</span> Hands-on: Assemble with the Velvet Optimiser</h3>
+
+  <ol>
+    <li><strong>Velvet Optimiser</strong> <i class="fa fa-wrench" aria-hidden="true"></i><span class="visually-hidden">tool</span>: Optimise your assembly with the following parameters:
+      <ul>
+        <li><em>“Start k-mer size”</em>: <code class="highlighter-rouge">45</code></li>
+        <li><em>“End k-mer size”</em>: <code class="highlighter-rouge">73</code></li>
+        <li><em>“Input file type”</em>: <code class="highlighter-rouge">Fastq</code></li>
+        <li><em>“Single or paired end reads”</em>: <code class="highlighter-rouge">Paired</code></li>
+        <li><i class="fa fa-file-o" aria-hidden="true"></i><span class="visually-hidden">param-file</span> <em>“Select first set of reads”</em>: <code class="highlighter-rouge">mutant_R1.fastq</code></li>
+        <li><i class="fa fa-file-o" aria-hidden="true"></i><span class="visually-hidden">param-file</span> <em>“Select second set of reads”</em>: <code class="highlighter-rouge">mutant_R2.fastq</code></li>
+      </ul>
+    </li>
+  </ol>
+
+</blockquote>
+
+<p>Your history will now contain a number of new files:</p>
+
+<ul>
+  <li>Velvet optimiser contigs
+    <ul>
+      <li>A fasta file of the final assembled contigs</li>
+    </ul>
+  </li>
+  <li>Velvet optimiser contig stats
+    <ul>
+      <li>A table of the lengths (in k-mer length) and coverages (k-mer coverages) for the final contigs.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Have a look at each file.</p>
+
+<blockquote class="notranslate hands_on">
+  <h3 id="hands_on-hands-on-get-contig-statistics-for-velvet-optimiser-contigs"><i class="fa fa-pencil" aria-hidden="true"></i><span class="visually-hidden">hands_on</span> Hands-on: Get contig statistics for Velvet Optimiser contigs</h3>
+
+  <ol>
+    <li><strong>Fasta Statistics</strong> <i class="fa fa-wrench" aria-hidden="true"></i><span class="visually-hidden">tool</span>: Produce a summary of the velvet optimiser contigs:
+      <ul>
+        <li><i class="fa fa-file-o" aria-hidden="true"></i><span class="visually-hidden">param-file</span> <em>“fasta or multifasta file”</em>: Select your velvet optimiser contigs file</li>
+      </ul>
+    </li>
+    <li>
+      <p>View the output</p>
+
+      <blockquote class="question">
+        <h3 id="question-questions-1"><i class="fa fa-question-circle" aria-hidden="true"></i><span class="visually-hidden">question</span> Questions</h3>
+
+        <p>Compare the output we got here with the output of the simple assemblies obtained in the introductory tutorial.</p>
+        <ol>
+          <li>What are the main differences between them?</li>
+          <li>Which has a higher “n50”? What does this mean?</li>
+        </ol>
+      </blockquote>
+    </li>
+  </ol>
+
+</blockquote>
+
+<p>Tables of results from <strong>(a)</strong> Simple assembly and <strong>(b)</strong> optimised assembly.</p>
+
+<p><strong>(a)</strong> <img src="../../images/image12.png" alt="The results of the contigs from Simple assembly." /></p>
+
+<p><strong>(b)</strong> <img src="../../images/optstats.png" alt="The results of the contigs from Optimised assembly. In contrast to simple assembly produced much higher n_50, while num_seq is lower." /></p>
+
+<blockquote class="details">
+  <h3 id="details-details-further-reading-on-assembly-with-velvet"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="visually-hidden">details</span> Details: Further reading on assembly with Velvet</h3>
+  <ul>
+    <li>Heuristic Resolution of Repeats and Scaffolding in the Velvet Short-Read de Novo Assembler (<a class="citation" href="#Zerbino2009">Zerbino <i>et al.</i> 2009</a>)</li>
+  </ul>
+
+</blockquote>
+
+<h2 id="visualisation-of-the-assembly">Visualisation of the Assembly</h2>
+
+<p>Now that we’ve assembled the genomes, let’s visualise this assembly using <a href="https://rrwick.github.io/Bandage/">Bandage</a> (<a class="citation" href="#Wick2015">Wick <i>et al.</i> 2015</a>). This tool will let us better understand how the assembly graph really looks, and can give us a feeling for if the genome was well assembled or not.</p>
+
+<p>Currently VelvetOptimiser does not include the LastGraph output, so we will manually run <code class="highlighter-rouge">velveth</code> and <code class="highlighter-rouge">velvetg</code> with the optimised parameters.</p>
+
+<blockquote class="notranslate hands_on">
+  <h3 id="hands_on-hands-on-manually-running-velvetgh"><i class="fa fa-pencil" aria-hidden="true"></i><span class="visually-hidden">hands_on</span> Hands-on: Manually running velvetg/h</h3>
+
+  <ol>
+    <li>
+      <p>Locate the output called “VelvetOptimiser: Contigs” in your history</p>
+    </li>
+    <li>
+      <p>Click the (i) information icon</p>
+    </li>
+    <li>
+      <p>Check the tool <code class="highlighter-rouge">stderr</code> in the information page for the optimised k-mer value</p>
+    </li>
+  </ol>
+</blockquote>
+
+<blockquote class="notranslate hands_on">
+  <h3 id="question-question"><i class="fa fa-question-circle" aria-hidden="true"></i><span class="visually-hidden">question</span> Question</h3>
+  <p>What was the optimal k-mer value? (referred to as <em>“hash”</em> in the stderr log)</p>
+  <blockquote class="solution">
+    <h3 id="solution-solution"><i class="fa fa-eye" aria-hidden="true"></i><span class="visually-hidden">solution</span> Solution</h3>
+    <p>55</p>
+  </blockquote>
+</blockquote>
+
+<p>With this information in hand, let’s run velvet:</p>
+
+<blockquote class="notranslate hands_on">
+  <h3 id="hands_on-hands-on-manually-running-velvetgh-1"><i class="fa fa-pencil" aria-hidden="true"></i><span class="visually-hidden">hands_on</span> Hands-on: Manually running velvetg/h</h3>
+
+  <ol>
+    <li><strong>velveth</strong> <i class="fa fa-wrench" aria-hidden="true"></i><span class="visually-hidden">tool</span>: Prepare a dataset for the Velvet velvetg Assembler
+      <ul>
+        <li><em>“Hash length”</em>: <code class="highlighter-rouge">55</code></li>
+        <li><em>“Insert Input Files”</em>:
+          <ul>
+            <li>1: Input Files
+              <ul>
+                <li><em>“file format”</em>: <code class="highlighter-rouge">fastq</code></li>
+                <li><em>“read type”</em>: <code class="highlighter-rouge">shortPaired reads</code></li>
+                <li><em>“Dataset”</em>: <code class="highlighter-rouge">mutant_R1.fastq</code></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><em>“Insert Input Files”</em>:
+          <ul>
+            <li>2: Input Files
+              <ul>
+                <li><em>“file format”</em>: <code class="highlighter-rouge">fastq</code></li>
+                <li><em>“read type”</em>: <code class="highlighter-rouge">shortPaired reads</code></li>
+                <li><em>“Dataset”</em>: <code class="highlighter-rouge">mutant_R2.fastq</code></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><strong>velvetg</strong> <i class="fa fa-wrench" aria-hidden="true"></i><span class="visually-hidden">tool</span>: Velvet sequence assembler for very short reads
+      <ul>
+        <li><em>“Velvet dataset”</em>: output from <strong>velveth</strong> <i class="fa fa-wrench" aria-hidden="true"></i><span class="visually-hidden">tool</span></li>
+        <li><em>“Generate velvet LastGraph file”</em>: <code class="highlighter-rouge">Yes</code></li>
+        <li><em>“Coverage cutoff”</em>: <code class="highlighter-rouge">Specify Cutoff Value</code>
+          <ul>
+            <li><em>“Remove nodes with coverage below”</em>: <code class="highlighter-rouge">1.44</code></li>
+          </ul>
+        </li>
+        <li><em>“Using Paired Reads”</em>: <code class="highlighter-rouge">Yes</code></li>
+      </ul>
+    </li>
+  </ol>
+
+</blockquote>
+
+<p>The LastGraph contains a detailed representation of the De Bruijn graph, which can give us an idea how velvet has assembled the genome and potentially resolved any conflicts.</p>
+
+<blockquote class="notranslate hands_on">
+  <h3 id="hands_on-hands-on-bandage"><i class="fa fa-pencil" aria-hidden="true"></i><span class="visually-hidden">hands_on</span> Hands-on: Bandage</h3>
+
+  <ol>
+    <li><strong>Bandage Image</strong> <i class="fa fa-wrench" aria-hidden="true"></i><span class="visually-hidden">tool</span>: visualize de novo assembly graphs
+      <ul>
+        <li><em>“Graphical Fragment Assembly”</em>: The “LastGraph” output of <strong>velvetg</strong> <i class="fa fa-wrench" aria-hidden="true"></i><span class="visually-hidden">tool</span></li>
+        <li><em>“Produce jpg, png or svg file?”</em>: <code class="highlighter-rouge">.svg</code></li>
+      </ul>
+    </li>
+    <li>Execute</li>
+    <li>View the output file</li>
+  </ol>
+</blockquote>
+
+<p>And now you should be able to see the graph that velvet produced:</p>
+
+<p><img src="../../images/bandage-velvet.svg" alt="velvet graph" /></p>
+
+<h2 id="interpreting-bandage-graphs">Interpreting Bandage Graphs</h2>
+
+<p>k-mer size has a <a href="https://github.com/rrwick/Bandage/wiki/Effect-of-kmer-size">significant effect</a> on the assembly. You can play around with various k-mers to see this effect in practice.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>k-mer</th>
+      <th>graph</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>21</td>
+      <td><a href="../../images/bandage-velvet-21.svg"><img src="../../images/bandage-velvet-21.svg" alt="21" /></a></td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td><a href="../../images/bandage-velvet-33.svg"><img src="../../images/bandage-velvet-33.svg" alt="33" /></a></td>
+    </tr>
+    <tr>
+      <td>53</td>
+      <td><a href="../../images/bandage-velvet-53.svg"><img src="../../images/bandage-velvet-53.svg" alt="53" /></a></td>
+    </tr>
+    <tr>
+      <td>77</td>
+      <td><a href="../../images/bandage-velvet-77.svg"><img src="../../images/bandage-velvet-77.svg" alt="77" /></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The next thing to be aware of is that there can be multiple valid interpretations of a graph, all equally valid in absence of other data. The following is taken verbatim <a href="https://github.com/rrwick/Bandage/wiki/Simple-example">from Bandage’s wiki</a>:</p>
+
+<blockquote class="quote">
+  <p>For a simple case, imagine a bacterial genome that contains a single repeated element in two separate places in the chromosome:</p>
+
+  <p><img src="https://camo.githubusercontent.com/03628b49f50ccf7a9c565d7712bfc70c7764cbeb/687474703a2f2f72727769636b2e6769746875622e696f2f42616e646167652f696d616765732f77696b692f73696d706c655f6578616d706c655f312e706e67" alt="Simple example 1" /></p>
+
+  <p>A researcher (who does not yet know the structure of the genome) sequences it, and the resulting 100 bp reads are assembled with a de novo assembler:</p>
+
+  <p><img src="https://camo.githubusercontent.com/a51f384b83fbb97590ce86b8ec14d4ebd1bb60d1/687474703a2f2f72727769636b2e6769746875622e696f2f42616e646167652f696d616765732f77696b692f73696d706c655f6578616d706c655f322e706e67" alt="Simple example 2" /></p>
+
+  <p>Because the repeated element is longer than the sequencing reads, the assembler was not able to reproduce the original genome as a single contig. Rather, three contigs are produced: one for the repeated sequence (even though it occurs twice) and one for each sequence between the repeated elements.</p>
+
+  <p>Given only the contigs, the relationship between these sequences is not clear. However, the assembly graph contains additional information which is made apparent in Bandage:</p>
+
+  <p><img src="https://camo.githubusercontent.com/406648509cf478ac0b2ab9f2447aec4e7575b7dd/687474703a2f2f72727769636b2e6769746875622e696f2f42616e646167652f696d616765732f77696b692f73696d706c655f6578616d706c655f332e706e67" alt="Simple example 3" /></p>
+
+  <p>There are two principal underlying sequences compatible with this graph: two separate circular sequences that share a region in common, or a single larger circular sequence with an element that occurs twice:</p>
+
+  <p><img src="https://camo.githubusercontent.com/58d0aa7eff4cfd3d36c9210e9f6a2f0265396715/687474703a2f2f72727769636b2e6769746875622e696f2f42616e646167652f696d616765732f77696b692f73696d706c655f6578616d706c655f342e706e67" alt="Simple example 4" /></p>
+
+  <p>Additional knowledge, such as information on the approximate size of the bacterial chromosome, can help the researcher to rule out the first alternative. In this way, Bandage has assisted in turning a fragmented assembly of three contigs into a completed genome of one sequence.</p>
+</blockquote>
+
+<h1 id="assemble-with-spades">Assemble with SPAdes</h1>
+
+<p>We will now perform an assembly with the much more modern SPAdes assembler (<a class="citation" href="#Bankevich2012">Bankevich <i>et al.</i> 2012</a>). It goes through a similar process to Velvet in the fact that it uses and simplifies de Bruijn graphs but it uses multiple values for k-mer size and combines the resultant graphs. This combination produces very good assemblies. When using SPAdes it is typical to choose at least 3 k-mer sizes. One low, one medium and one high. We will use 33, 55 and 91.</p>
+
+<blockquote class="notranslate hands_on">
+  <h3 id="hands_on-hands-on-assemble-with-spades"><i class="fa fa-pencil" aria-hidden="true"></i><span class="visually-hidden">hands_on</span> Hands-on: Assemble with SPAdes</h3>
+
+  <ol>
+    <li>
+      <p><strong>SPAdes</strong> <i class="fa fa-wrench" aria-hidden="true"></i><span class="visually-hidden">tool</span>: Assemble the reads:</p>
+
+      <ul>
+        <li><em>“Run only assembly”</em>: <code class="highlighter-rouge">yes</code></li>
+        <li><em>“K-mers to use separated by commas”</em>: <code class="highlighter-rouge">33,55,91</code> [note: no spaces!]</li>
+        <li><em>“Coverage cutoff”</em>: <code class="highlighter-rouge">auto</code></li>
+        <li><i class="fa fa-file-o" aria-hidden="true"></i><span class="visually-hidden">param-file</span> <em>“Files -&gt; forward reads”</em>: <code class="highlighter-rouge">mutant_R1.fastq</code></li>
+        <li><i class="fa fa-file-o" aria-hidden="true"></i><span class="visually-hidden">param-file</span> <em>“Files -&gt; reverse reads”</em>: <code class="highlighter-rouge">mutant_R2.fastq</code></li>
+        <li><em>“Output final assembly graph with scaffolds?”</em>: <code class="highlighter-rouge">Yes</code></li>
+      </ul>
+    </li>
+  </ol>
+
+</blockquote>
+
+<p>You will now have 5 new files in your history:</p>
+
+<ul>
+  <li>two Fasta files, one for contigs and one for scaffolds</li>
+  <li>two statistics files, one for contigs and one for scaffolds</li>
+  <li>the SPAdes log file.</li>
+</ul>
+
+<p>Examine each file, especially the stats files.</p>
+
+<p><img src="../../images/contig_stats.png" alt="Contig stats file with NODE_5 being the shortest contig with the highest coverage and NODE_1 being the opposite." /></p>
+
+<blockquote class="question">
+  <h3 id="question-questions-2"><i class="fa fa-question-circle" aria-hidden="true"></i><span class="visually-hidden">question</span> Questions</h3>
+
+  <ol>
+    <li>Why would one of the contigs have much higher coverage than the others?</li>
+    <li>What could this represent?</li>
+  </ol>
+
+</blockquote>
+
+<blockquote class="notranslate hands_on">
+  <h3 id="hands_on-hands-on-visualize-assembly-with-bandage"><i class="fa fa-pencil" aria-hidden="true"></i><span class="visually-hidden">hands_on</span> Hands-on: Visualize assembly with Bandage</h3>
+
+  <ol>
+    <li><strong>Bandage</strong> <i class="fa fa-wrench" aria-hidden="true"></i><span class="visually-hidden">tool</span> with the following parameters:
+      <ul>
+        <li><em>“Graphical Fragment Assembly”</em>: <code class="highlighter-rouge">assembly graph with scaffolds</code> output from <strong>SPAdes</strong> <i class="fa fa-wrench" aria-hidden="true"></i><span class="visually-hidden">tool</span></li>
+      </ul>
+    </li>
+    <li>Examine the output image <i class="fa fa-eye" aria-hidden="true"></i><span class="visually-hidden">galaxy-eye</span></li>
+  </ol>
+
+</blockquote>
+
+<p>The visualized assembly should look something like this:</p>
+
+<p><img src="../../images/bandage_spades.svg" alt="bandage spades" /></p>
+
+<blockquote class="question">
+  <h3 id="question-questions-3"><i class="fa fa-question-circle" aria-hidden="true"></i><span class="visually-hidden">question</span> Questions</h3>
+
+  <p>Which assembly looks better to you? Why?</p>
+
+</blockquote>
+
+<blockquote class="notranslate hands_on">
+  <h3 id="hands_on-hands-on-get-contig-statistics-for-spades-contigs"><i class="fa fa-pencil" aria-hidden="true"></i><span class="visually-hidden">hands_on</span> Hands-on: Get contig statistics for SPAdes contigs</h3>
+
+  <ol>
+    <li><strong>Fasta Statistics</strong> <i class="fa fa-wrench" aria-hidden="true"></i><span class="visually-hidden">tool</span>: Produce a summary of the SPAdes contigs:
+      <ul>
+        <li><i class="fa fa-file-o" aria-hidden="true"></i><span class="visually-hidden">param-file</span> <em>“fasta or multifasta file”</em>: Select your velvet optimiser contigs file</li>
+      </ul>
+    </li>
+    <li>
+      <p>Look at the output file.</p>
+
+      <blockquote class="question">
+        <h3 id="question-questions-4"><i class="fa fa-question-circle" aria-hidden="true"></i><span class="visually-hidden">question</span> Questions</h3>
+
+        <p>Compare the output we got here with the output of the simple assemblies obtained in the introductory tutorial.</p>
+        <ol>
+          <li>What are the main differences between them?</li>
+          <li>Did SPAdes produce a better assembly than the Velvet Optimiser?</li>
+        </ol>
+      </blockquote>
+    </li>
+  </ol>
+
+</blockquote>
+
+
+
+                    
+                    <blockquote class="key_points">
+                        <h3><i class="fa fa-key" aria-hidden="true"></i><span class="visually-hidden">keypoints</span> Key points</h3>
+
+                        <ul>
+                            
+                            <li>We learned about how the choice of k-mer size will affect assembly outcomes</li>
+                            
+                            <li>We learned about the strategies that assemblers use to make reference genomes</li>
+                            
+                            <li>We performed a number of assemblies with Velvet and SPAdes.</li>
+                            
+                            <li>You should use SPAdes or another more modern assembler than Velvet for actual assemblies now.</li>
+                            
+                        </ul>
+                    </blockquote>
+                    
+
+                    
+
+                    
+                    <h1 id="bibliography">References</h1>
+                    <ol class="bibliography"><li><span id="Velvet2008">Zerbino, D. R., and E. Birney, 2008 <b>Velvet: Algorithms for de novo short read assembly using de Bruijn graphs</b>. Genome Research 18: 821–829.</span>
+    
+    
+    <a href="https://doi.org/10.1101/gr.074492.107">10.1101/gr.074492.107</a>
+    
+    
+      <!-- prevent duplicate doi links -->
+      
+    
+
+</li>
+<li><span id="Zerbino2009">Zerbino, D. R., G. K. McEwen, E. H. Margulies, and E. Birney, 2009 <b>Pebble and Rock Band: Heuristic Resolution of Repeats and Scaffolding in the Velvet Short-Read de Novo Assembler</b> (S. L. Salzberg, Ed.). PLoS ONE 4: e8407.</span>
+    
+    
+    <a href="https://doi.org/10.1371/journal.pone.0008407">10.1371/journal.pone.0008407</a>
+    
+    
+      <!-- prevent duplicate doi links -->
+      
+    
+
+</li>
+<li><span id="Bankevich2012">Bankevich, A., S. Nurk, D. Antipov, A. A. Gurevich, M. Dvorkin <i>et al.</i>, 2012 <b>SPAdes: A New Genome Assembly Algorithm and Its Applications to Single-Cell Sequencing</b>. Journal of Computational Biology 19: 455–477.</span>
+    
+    
+    <a href="https://doi.org/10.1089/cmb.2012.0021">10.1089/cmb.2012.0021</a>
+    
+    
+      <!-- prevent duplicate doi links -->
+      
+    
+
+</li>
+<li><span id="Wick2015">Wick, R. R., M. B. Schultz, J. Zobel, and K. E. Holt, 2015 <b>Bandage: interactive visualization ofde novogenome assemblies</b>. Bioinformatics 31: 3350–3352.</span>
+    
+    
+    <a href="https://doi.org/10.1093/bioinformatics/btv383">10.1093/bioinformatics/btv383</a>
+    
+    
+      <!-- prevent duplicate doi links -->
+      
+    
+
+</li></ol>
+                    
+
+                </div>
+            </div>
+        </div>
+
+        <h3><i class="fa fa-thumbs-up" aria-hidden="true"></i><span class="visually-hidden">congratulations</span> Congratulations on successfully completing this tutorial!</h3>
+
+        
+
+        
+
+        <hr>
+        <br>
+
+        <iframe id="feedback-google" class="google-form" src="https://docs.google.com/forms/d/e/1FAIpQLSd4VZptFTQ03kHkMz0JyW9b6_S8geU5KjNE_tLM0dixT3ZQmA/viewform?embedded=true&entry.1235803833=De Bruijn Graph Assembly (Assembly)">Loading...
+        </iframe>
+
+        <blockquote class="feedback">
+            <h3><i class="fa fa-comments-o" aria-hidden="true"></i><span class="visually-hidden">feedback</span> Give us even more feedback on this content!</h3>
+            <p>To give us more detailed feedback about these materials, please take a moment to fill in the extended <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_GLZRpxZGAL9tN6DA1bE6WkNhmQdXT7B16TpOb-X4YwKUsQ/viewform?entry.1548889262=De Bruijn Graph Assembly (Assembly)">Feedback Form</a>.</p>
+        </blockquote>
+    </section>
+</div>
+
+
+<footer>
+    <div class="container">
+        <p>
+            This material is the result of a collaborative work. Thanks to the
+            <a href="https://wiki.galaxyproject.org/Teach/GTN">Galaxy Training Network</a>
+            and all the <a href="/training-material/hall-of-fame">contributors</a> (Simon Gladman, Helena Rasche, Saskia Hiltemann)!
+        </p>
+        <p>
+            Found a typo? Something is wrong in this tutorial? Edit it on
+            <a href="https://github.com/galaxyproject/training-material/tree/master/topics/assembly/tutorials/debruijn-graph-assembly/tutorial.md">GitHub</a>.
+        </p>
+    </div>
+</footer>
+
+    </body>
+    <script type="text/javascript" src="/training-material/assets/js/jquery.slim.min.js"></script>
+    <script type="text/javascript" src="/training-material/assets/js/popper.min.js"></script>
+    <script type="text/javascript" src="/training-material/assets/js/bootstrap.min.js?v=3"></script>
+    <script type="text/javascript" src="/training-material/assets/js/details-element-polyfill.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="/training-material/assets/js/bootstrap-toc.min.js"></script>
+    <script type="text/javascript" src="/training-material/assets/js/main.js"></script>
+
+    <script type="text/javascript" src="/training-material/assets/js/clipboard.min.js"></script>
+    <script type="text/javascript">
+    var snippets=document.querySelectorAll('div.highlight');
+    [].forEach.call(snippets,function(snippet){
+        snippet.firstChild.insertAdjacentHTML('beforebegin','<button class="btn btn-light" data-clipboard-snippet><i class="fa fa-copy"></i>&nbsp;Copy</button>');
+    });
+
+    var clipboardSnippets=new ClipboardJS('[data-clipboard-snippet]',{
+        target:function(trigger){return trigger.nextElementSibling;
+    }});
+    </script>
+</html>

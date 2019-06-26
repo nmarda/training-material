@@ -1,0 +1,1366 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Galaxy Training!</title>
+        
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-45719423-18' , 'auto');
+            ga('send', 'pageview');
+        </script>
+        
+        <link rel="stylesheet" href="/training-material/assets/css/bootstrap.min.css?v=3">
+        <link rel="stylesheet" href="/training-material/assets/css/bootstrap-toc.min.css">
+        <link rel="stylesheet" href="/training-material/assets/css/main.css?v=2">
+        <link rel="stylesheet" href="/training-material/assets/css/font-awesome.css">
+        <link rel="stylesheet" href="/training-material/assets/css/academicons.css">
+        <link rel="stylesheet" href="/training-material/assets/css/syntax_highlighting.css">
+        <link rel="shortcut icon" href="/training-material/favicon.ico" type="image/x-icon" />
+
+        
+        
+        
+        
+        
+        <meta name="description" content="DNA sequence data has become an indispensable tool for Mo..." />
+        <meta property="og:title" content="Galaxy Training: Assembly" />
+        <meta property="og:description" content="DNA sequence data has become an indispensable tool for Mo..." />
+        <meta property="og:image" content="/training-material/assets/images/GTNLogo1000.png" />
+    </head>
+    <body data-spy="scroll" data-target="#toc">
+        <header>
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/training-material/">
+                <img src="/training-material/assets/images/GTN-60px.png" height="30" alt="Galaxy Training Network logo">
+                Galaxy Training!
+            </a>
+
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#top-navbar" aria-controls="top-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="top-navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                         <a class="nav-link" href="/training-material/hall-of-fame" title="Hall of Fame">
+                            <i class="fa fa-users" aria-hidden="true"></i><span class="visually-hidden">hall-of-fame</span> Contributors
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/galaxyproject/training-material" title="View on GitHub">
+                            <i class="fa fa-github" aria-hidden="true"></i><span class="visually-hidden">github</span> View on GitHub
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="Help">
+        <i class="fa fa-life-ring" aria-hidden="true"></i><span class="visually-hidden">help</span> Help
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+        <form method="get" action="https://tess.elixir-europe.org/materials">
+            <input type="text" id="search" name="q" value="" style="margin-left: 0.5em;/*! border-radius: 0px; */">
+            <input type="hidden" value="Galaxy Training" name="content_provider">
+            <input type="submit" value="Search on TeSS" style="width: 92%;border-radius: 0px;margin: 0.5em;background: #f47d20;border: 0px;padding: 0.25em;" class="">
+        </form>
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/training-material/faq" title="Check our FAQ">
+            FAQ
+        </a>
+        <a class="dropdown-item" href="https://gitter.im/Galaxy-Training-Network/Lobby" title="Chat on Gitter">
+            Chat on Gitter
+        </a>
+        <a class="dropdown-item" href="https://help.galaxyproject.org/" title="Discuss on Galaxy Help">
+            Discuss on Galaxy Help
+        </a>
+    </div>
+</li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+
+
+
+<div class="container main-content">
+    <section>
+        <h1>Assembly</h1>
+        <p>DNA sequence data has become an indispensable tool for Molecular Biology & Evolutionary Biology. Study in these fields now require a genome sequence to work from. We call this a 'Reference Sequence.' We need to build a reference for each species. We do this by Genome Assembly. De novo Genome Assembly is the process of reconstructing the original DNA sequence from the fragment reads alone.</p>
+
+        
+        <h2 id="requirements">Requirements</h2>
+        <p>Before diving into this topic, we recommend you to have a look at:</p>
+
+        <ul>
+            
+    <li>
+    
+        
+        
+        <a href="/training-material/topics/introduction">Introduction to Galaxy Analyses</a>
+        
+    
+    </li>
+
+    <li>
+    
+        
+        
+        <a href="/training-material/topics/sequence-analysis">Sequence analysis</a>
+        
+            <ul>
+                
+                    
+                        
+                    
+                        
+                            
+                            <li> Quality Control:
+                            
+                                <a href="/training-material/topics/sequence-analysis/tutorials/quality-control/slides.html"><i class="fa fa-slideshare" aria-hidden="true"></i><span class="visually-hidden">slides</span> slides</a>
+                                
+                            
+                            
+                                
+                                    - <a href="/training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html"><i class="fa fa-laptop" aria-hidden="true"></i><span class="visually-hidden">tutorial</span> hands-on</a>
+                                
+                            
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+            </ul>
+        
+    
+    </li>
+
+        </ul>
+        
+
+        <h2 id="material">Material</h2>
+        <table class="table table-responsive table-striped">
+            <tr>
+                <th>Lesson</th>
+                <th>Slides</th>
+                <th>Hands-on</th>
+
+                
+                <th>Input dataset</th>
+                <th>Workflows</th>
+                <th>Galaxy tour</th>
+                
+
+                
+            </tr>
+
+            
+                
+                        <script type="application/ld+json">
+                            
+
+
+{
+  "@context": "http://schema.org",
+  "@type": "Course",
+  "accessMode": [
+    "textual",
+    "visual"
+  ],
+  "accessModeSufficient": [
+    "textual",
+    "visual"
+  ],
+  "accessibilityControl": [
+    "fullKeyboardControl",
+    "fullMouseControl"
+  ],
+  "accessibilityFeature": [
+    "alternativeText",
+    "tableOfContents"
+  ],
+  "accessibilitySummary": "Short descriptions are present but long descriptions will be needed for non-visual users",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "students"
+  },
+  "citation": {
+    "@type": "CreativeWork",
+    "name": "Community-Driven Data Analysis Training for Biology",
+    "url": "https://doi.org/10.1016/j.cels.2018.05.012"
+  },
+  "copyrightHolder": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "discussionUrl": "https://gitter.im/Galaxy-Training-Network/Lobby",
+  "headline": "De Bruijn Graph Assembly",
+  "inLanguage": {
+    "@type": "Language",
+    "name": "English",
+    "alternateName": "en"
+  },
+  "interactivityType": "mixed",
+  "isAccessibleForFree": true,
+  "license": "/blob//LICENSE.md",
+  "producer": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "provider": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "sourceOrganization": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "courseCode": "assembly / debruijn-graph-assembly",
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Assembly",
+    "description": "DNA sequence data has become an indispensable tool for Molecular Biology & Evolutionary Biology. Study in these fields now require a genome sequence to work from. We call this a 'Reference Sequence.' We need to build a reference for each species. We do this by Genome Assembly. De novo Genome Assembly is the process of reconstructing the original DNA sequence from the fragment reads alone.",
+    "url": "https://galaxyproject.github.io//training-material/topics/assembly/"
+  },
+  "learningResourceType": "tutorial",
+  "name": "De Bruijn Graph Assembly",
+  "description": "De Bruijn Graph Assembly",
+  "coursePrerequisites": [
+    {
+      "@type": "CreativeWork",
+      "url": "https://galaxyproject.github.io//training-material/topics/introduction/",
+      "name": "Introduction to Galaxy Analyses",
+      "description": "Introduction to Galaxy Analyses",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/sequence-analysis/tutorials/quality-control/slides.html",
+      "name": "Quality Control",
+      "description": "Slides for 'Quality Control' tutorial",
+      "learningResourceType": "slides",
+      "interactivityType": "expositive",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html",
+      "name": "Quality Control",
+      "description": "Hands-on for 'Quality Control' tutorial",
+      "learningResourceType": "hands-on tutorial",
+      "interactivityType": "expositive",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/tutorials/debruijn-graph-assembly/tutorial.html",
+      "name": "Hands-on for 'De Bruijn Graph Assembly' tutorial",
+      "learningResourceType": "hands-on tutorial",
+      "interactivityType": "expositive"
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/tutorials/debruijn-graph-assembly/slides.html",
+      "name": "Slides for 'De Bruijn Graph Assembly' tutorial",
+      "learningResourceType": "slides",
+      "interactivityType": "expositive"
+    }
+  ],
+  "mentions": [
+    [
+      {
+        "@type": "Thing",
+        "url": "/blob//topics/assembly/tutorials/debruijn-graph-assembly/workflows/slugger70",
+        "name": "Workflow for De Bruijn Graph Assembly tutorial"
+      },
+      {
+        "@type": "Thing",
+        "url": "/blob//topics/assembly/tutorials/debruijn-graph-assembly/workflows/erasche",
+        "name": "Workflow for De Bruijn Graph Assembly tutorial"
+      },
+      {
+        "@type": "Thing",
+        "url": "/blob//topics/assembly/tutorials/debruijn-graph-assembly/workflows/shiltemann",
+        "name": "Workflow for De Bruijn Graph Assembly tutorial"
+      }
+    ]
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Simon Gladman"
+    },
+    {
+      "@type": "Person",
+      "name": "Helena Rasche"
+    },
+    {
+      "@type": "Person",
+      "name": "Saskia Hiltemann"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "name": "Simon Gladman"
+    },
+    {
+      "@type": "Person",
+      "name": "Helena Rasche"
+    },
+    {
+      "@type": "Person",
+      "name": "Saskia Hiltemann"
+    }
+  ],
+  "about": [
+    {
+      "@type": "CreativeWork",
+      "name": "Assembly",
+      "description": "DNA sequence data has become an indispensable tool for Molecular Biology & Evolutionary Biology. Study in these fields now require a genome sequence to work from. We call this a 'Reference Sequence.' We need to build a reference for each species. We do this by Genome Assembly. De novo Genome Assembly is the process of reconstructing the original DNA sequence from the fragment reads alone.",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/"
+    }
+  ]
+}
+                        </script>
+                    <tr>
+                        <td>
+                            De Bruijn Graph Assembly
+                            <div class="">
+                            
+                            
+                        </div>
+                        </td>
+                        
+                            <td>
+                                
+    <a class="topic-icon" href="/training-material/topics/assembly/tutorials/debruijn-graph-assembly/slides.html">
+    <i class="fa fa-slideshare" aria-hidden="true"></i><span class="visually-hidden">slides</span>
+</a>
+
+
+                            </td>
+                            <td>
+                                
+    <span class="btn-group">
+        <a href="/training-material/topics/assembly/tutorials/debruijn-graph-assembly/tutorial.html" class="btn btn-default" title="Where to run the tutorial">
+            <i class="fa fa-laptop" aria-hidden="true"></i><span class="visually-hidden">tutorial</span>
+        </a>
+        <a href="#" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+        </a>
+        <ul class="dropdown-menu">
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=fr&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fdebruijn-graph-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                FR
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ja&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fdebruijn-graph-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                JA
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=es&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fdebruijn-graph-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                ES
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=pt&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fdebruijn-graph-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                PT
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ar&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fdebruijn-graph-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                AR
+            </a>
+        
+    </span>
+
+
+                            </td>
+
+                            
+                                <td>
+                                    
+<a class="topic-icon" href="https://doi.org/10.5281/zenodo.582600">
+    <i class="fa fa-files-o" aria-hidden="true"></i><span class="visually-hidden">zenodo_link</span>
+</a>
+
+
+                                </td>
+                                <td>
+                                    
+    <a class="topic-icon" href="https://github.com/galaxyproject/training-material/tree/master/topics/assembly/tutorials/debruijn-graph-assembly/workflows/" title="Workflows" alt="De Bruijn Graph Assembly workflows">
+        <i class="fa fa-share-alt" aria-hidden="true"></i><span class="visually-hidden">workflow</span>
+    </a>
+
+
+                                </td>
+                                <td>
+                                    
+<a class="topic-icon" href="https://github.com/galaxyproject/training-material/tree/master/topics/assembly/tutorials/debruijn-graph-assembly/tours/">
+    <i class="fa fa-magic" aria-hidden="true"></i><span class="visually-hidden">interactive_tour</span>
+</a>
+
+
+                                </td>
+                            
+
+                            <td>
+                                
+
+                            </td>
+                        
+                    </tr>
+                
+            
+                
+                        <script type="application/ld+json">
+                            
+
+
+{
+  "@context": "http://schema.org",
+  "@type": "Course",
+  "accessMode": [
+    "textual",
+    "visual"
+  ],
+  "accessModeSufficient": [
+    "textual",
+    "visual"
+  ],
+  "accessibilityControl": [
+    "fullKeyboardControl",
+    "fullMouseControl"
+  ],
+  "accessibilityFeature": [
+    "alternativeText",
+    "tableOfContents"
+  ],
+  "accessibilitySummary": "Short descriptions are present but long descriptions will be needed for non-visual users",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "students"
+  },
+  "citation": {
+    "@type": "CreativeWork",
+    "name": "Community-Driven Data Analysis Training for Biology",
+    "url": "https://doi.org/10.1016/j.cels.2018.05.012"
+  },
+  "copyrightHolder": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "discussionUrl": "https://gitter.im/Galaxy-Training-Network/Lobby",
+  "headline": "Introduction to Genome Assembly",
+  "inLanguage": {
+    "@type": "Language",
+    "name": "English",
+    "alternateName": "en"
+  },
+  "interactivityType": "mixed",
+  "isAccessibleForFree": true,
+  "license": "/blob//LICENSE.md",
+  "producer": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "provider": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "sourceOrganization": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "courseCode": "assembly / general-introduction",
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Assembly",
+    "description": "DNA sequence data has become an indispensable tool for Molecular Biology & Evolutionary Biology. Study in these fields now require a genome sequence to work from. We call this a 'Reference Sequence.' We need to build a reference for each species. We do this by Genome Assembly. De novo Genome Assembly is the process of reconstructing the original DNA sequence from the fragment reads alone.",
+    "url": "https://galaxyproject.github.io//training-material/topics/assembly/"
+  },
+  "learningResourceType": "tutorial",
+  "name": "Introduction to Genome Assembly",
+  "description": "Introduction to Genome Assembly",
+  "coursePrerequisites": [
+    {
+      "@type": "CreativeWork",
+      "url": "https://galaxyproject.github.io//training-material/topics/introduction/",
+      "name": "Introduction to Galaxy Analyses",
+      "description": "Introduction to Galaxy Analyses",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/sequence-analysis/tutorials/quality-control/slides.html",
+      "name": "Quality Control",
+      "description": "Slides for 'Quality Control' tutorial",
+      "learningResourceType": "slides",
+      "interactivityType": "expositive",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html",
+      "name": "Quality Control",
+      "description": "Hands-on for 'Quality Control' tutorial",
+      "learningResourceType": "hands-on tutorial",
+      "interactivityType": "expositive",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/tutorials/general-introduction/tutorial.html",
+      "name": "Hands-on for 'Introduction to Genome Assembly' tutorial",
+      "learningResourceType": "hands-on tutorial",
+      "interactivityType": "expositive"
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/tutorials/general-introduction/slides.html",
+      "name": "Slides for 'Introduction to Genome Assembly' tutorial",
+      "learningResourceType": "slides",
+      "interactivityType": "expositive"
+    }
+  ],
+  "mentions": [
+    [
+      {
+        "@type": "Thing",
+        "url": "/blob//topics/assembly/tutorials/general-introduction/workflows/slugger70",
+        "name": "Workflow for Introduction to Genome Assembly tutorial"
+      }
+    ]
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Simon Gladman"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "name": "Simon Gladman"
+    }
+  ],
+  "about": [
+    {
+      "@type": "CreativeWork",
+      "name": "Assembly",
+      "description": "DNA sequence data has become an indispensable tool for Molecular Biology & Evolutionary Biology. Study in these fields now require a genome sequence to work from. We call this a 'Reference Sequence.' We need to build a reference for each species. We do this by Genome Assembly. De novo Genome Assembly is the process of reconstructing the original DNA sequence from the fragment reads alone.",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/"
+    }
+  ]
+}
+                        </script>
+                    <tr>
+                        <td>
+                            Introduction to Genome Assembly
+                            <div class="">
+                            
+                            
+                        </div>
+                        </td>
+                        
+                            <td>
+                                
+    <a class="topic-icon" href="/training-material/topics/assembly/tutorials/general-introduction/slides.html">
+    <i class="fa fa-slideshare" aria-hidden="true"></i><span class="visually-hidden">slides</span>
+</a>
+
+
+                            </td>
+                            <td>
+                                
+    <span class="btn-group">
+        <a href="/training-material/topics/assembly/tutorials/general-introduction/tutorial.html" class="btn btn-default" title="Where to run the tutorial">
+            <i class="fa fa-laptop" aria-hidden="true"></i><span class="visually-hidden">tutorial</span>
+        </a>
+        <a href="#" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+        </a>
+        <ul class="dropdown-menu">
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=fr&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fgeneral-introduction%2Ftutorial.html&edit-text=&act=url" title="">
+                FR
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ja&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fgeneral-introduction%2Ftutorial.html&edit-text=&act=url" title="">
+                JA
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=es&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fgeneral-introduction%2Ftutorial.html&edit-text=&act=url" title="">
+                ES
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=pt&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fgeneral-introduction%2Ftutorial.html&edit-text=&act=url" title="">
+                PT
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ar&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fgeneral-introduction%2Ftutorial.html&edit-text=&act=url" title="">
+                AR
+            </a>
+        
+    </span>
+
+
+                            </td>
+
+                            
+                                <td>
+                                    
+<a class="topic-icon" href="https://doi.org/10.5281/zenodo.582600">
+    <i class="fa fa-files-o" aria-hidden="true"></i><span class="visually-hidden">zenodo_link</span>
+</a>
+
+
+                                </td>
+                                <td>
+                                    
+    <a class="topic-icon" href="https://github.com/galaxyproject/training-material/tree/master/topics/assembly/tutorials/general-introduction/workflows/" title="Workflows" alt="Introduction to Genome Assembly workflows">
+        <i class="fa fa-share-alt" aria-hidden="true"></i><span class="visually-hidden">workflow</span>
+    </a>
+
+
+                                </td>
+                                <td>
+                                    
+<a class="topic-icon" href="https://github.com/galaxyproject/training-material/tree/master/topics/assembly/tutorials/general-introduction/tours/">
+    <i class="fa fa-magic" aria-hidden="true"></i><span class="visually-hidden">interactive_tour</span>
+</a>
+
+
+                                </td>
+                            
+
+                            <td>
+                                
+
+                            </td>
+                        
+                    </tr>
+                
+            
+                
+                        <script type="application/ld+json">
+                            
+
+
+{
+  "@context": "http://schema.org",
+  "@type": "Course",
+  "accessMode": [
+    "textual",
+    "visual"
+  ],
+  "accessModeSufficient": [
+    "textual",
+    "visual"
+  ],
+  "accessibilityControl": [
+    "fullKeyboardControl",
+    "fullMouseControl"
+  ],
+  "accessibilityFeature": [
+    "alternativeText",
+    "tableOfContents"
+  ],
+  "accessibilitySummary": "Short descriptions are present but long descriptions will be needed for non-visual users",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "students"
+  },
+  "citation": {
+    "@type": "CreativeWork",
+    "name": "Community-Driven Data Analysis Training for Biology",
+    "url": "https://doi.org/10.1016/j.cels.2018.05.012"
+  },
+  "copyrightHolder": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "discussionUrl": "https://gitter.im/Galaxy-Training-Network/Lobby",
+  "headline": "Making sense of a newly assembled genome",
+  "inLanguage": {
+    "@type": "Language",
+    "name": "English",
+    "alternateName": "en"
+  },
+  "interactivityType": "mixed",
+  "isAccessibleForFree": true,
+  "license": "/blob//LICENSE.md",
+  "producer": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "provider": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "sourceOrganization": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "courseCode": "assembly / ecoli_comparison",
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Assembly",
+    "description": "DNA sequence data has become an indispensable tool for Molecular Biology & Evolutionary Biology. Study in these fields now require a genome sequence to work from. We call this a 'Reference Sequence.' We need to build a reference for each species. We do this by Genome Assembly. De novo Genome Assembly is the process of reconstructing the original DNA sequence from the fragment reads alone.",
+    "url": "https://galaxyproject.github.io//training-material/topics/assembly/"
+  },
+  "learningResourceType": "tutorial",
+  "name": "Making sense of a newly assembled genome",
+  "description": "Making sense of a newly assembled genome",
+  "coursePrerequisites": [
+    {
+      "@type": "CreativeWork",
+      "url": "https://galaxyproject.github.io//training-material/topics/introduction/",
+      "name": "Introduction to Galaxy Analyses",
+      "description": "Introduction to Galaxy Analyses",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/sequence-analysis/tutorials/quality-control/slides.html",
+      "name": "Quality Control",
+      "description": "Slides for 'Quality Control' tutorial",
+      "learningResourceType": "slides",
+      "interactivityType": "expositive",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html",
+      "name": "Quality Control",
+      "description": "Hands-on for 'Quality Control' tutorial",
+      "learningResourceType": "hands-on tutorial",
+      "interactivityType": "expositive",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/tutorials/unicycler-assembly/slides.html",
+      "name": "Unicycler Assembly",
+      "description": "Slides for 'Unicycler Assembly' tutorial",
+      "learningResourceType": "slides",
+      "interactivityType": "expositive",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/tutorials/unicycler-assembly/tutorial.html",
+      "name": "Unicycler Assembly",
+      "description": "Hands-on for 'Unicycler Assembly' tutorial",
+      "learningResourceType": "hands-on tutorial",
+      "interactivityType": "expositive",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/tutorials/ecoli_comparison/tutorial.html",
+      "name": "Hands-on for 'Making sense of a newly assembled genome' tutorial",
+      "learningResourceType": "hands-on tutorial",
+      "interactivityType": "expositive"
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/tutorials/ecoli_comparison/slides.html",
+      "name": "Slides for 'Making sense of a newly assembled genome' tutorial",
+      "learningResourceType": "slides",
+      "interactivityType": "expositive"
+    }
+  ],
+  "mentions": [
+    [
+      {
+        "@type": "Thing",
+        "url": "/blob//topics/assembly/tutorials/ecoli_comparison/workflows/nekrut",
+        "name": "Workflow for Making sense of a newly assembled genome tutorial"
+      },
+      {
+        "@type": "Thing",
+        "url": "/blob//topics/assembly/tutorials/ecoli_comparison/workflows/delphine-l",
+        "name": "Workflow for Making sense of a newly assembled genome tutorial"
+      }
+    ]
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Anton Nekrutenko"
+    },
+    {
+      "@type": "Person",
+      "name": "Delphine Lariviere"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "name": "Anton Nekrutenko"
+    },
+    {
+      "@type": "Person",
+      "name": "Delphine Lariviere"
+    }
+  ],
+  "about": [
+    {
+      "@type": "CreativeWork",
+      "name": "Assembly",
+      "description": "DNA sequence data has become an indispensable tool for Molecular Biology & Evolutionary Biology. Study in these fields now require a genome sequence to work from. We call this a 'Reference Sequence.' We need to build a reference for each species. We do this by Genome Assembly. De novo Genome Assembly is the process of reconstructing the original DNA sequence from the fragment reads alone.",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/"
+    }
+  ]
+}
+                        </script>
+                    <tr>
+                        <td>
+                            Making sense of a newly assembled genome
+                            <div class="">
+                            
+                            
+                                  
+                                       <span class="label label-default" style="background-color: hsl(271, 80.0%, 85%); color: #333; border: 1px solid hsl(271, 80.0%, 45%)">prokaryote</span>
+                                  
+                            
+                        </div>
+                        </td>
+                        
+                            <td>
+                                
+
+                            </td>
+                            <td>
+                                
+    <span class="btn-group">
+        <a href="/training-material/topics/assembly/tutorials/ecoli_comparison/tutorial.html" class="btn btn-default" title="Where to run the tutorial">
+            <i class="fa fa-laptop" aria-hidden="true"></i><span class="visually-hidden">tutorial</span>
+        </a>
+        <a href="#" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+        </a>
+        <ul class="dropdown-menu">
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=fr&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fecoli_comparison%2Ftutorial.html&edit-text=&act=url" title="">
+                FR
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ja&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fecoli_comparison%2Ftutorial.html&edit-text=&act=url" title="">
+                JA
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=es&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fecoli_comparison%2Ftutorial.html&edit-text=&act=url" title="">
+                ES
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=pt&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fecoli_comparison%2Ftutorial.html&edit-text=&act=url" title="">
+                PT
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ar&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Fecoli_comparison%2Ftutorial.html&edit-text=&act=url" title="">
+                AR
+            </a>
+        
+    </span>
+
+
+                            </td>
+
+                            
+                                <td>
+                                    
+<a class="topic-icon" href="https://doi.org/10.5281/zenodo.1306128">
+    <i class="fa fa-files-o" aria-hidden="true"></i><span class="visually-hidden">zenodo_link</span>
+</a>
+
+
+                                </td>
+                                <td>
+                                    
+    <a class="topic-icon" href="https://github.com/galaxyproject/training-material/tree/master/topics/assembly/tutorials/ecoli_comparison/workflows/" title="Workflows" alt="Making sense of a newly assembled genome workflows">
+        <i class="fa fa-share-alt" aria-hidden="true"></i><span class="visually-hidden">workflow</span>
+    </a>
+
+
+                                </td>
+                                <td>
+                                    
+<a class="topic-icon" href="https://github.com/galaxyproject/training-material/tree/master/topics/assembly/tutorials/ecoli_comparison/tours/">
+    <i class="fa fa-magic" aria-hidden="true"></i><span class="visually-hidden">interactive_tour</span>
+</a>
+
+
+                                </td>
+                            
+
+                            <td>
+                                
+
+                            </td>
+                        
+                    </tr>
+                
+            
+                
+                        <script type="application/ld+json">
+                            
+
+
+{
+  "@context": "http://schema.org",
+  "@type": "Course",
+  "accessMode": [
+    "textual",
+    "visual"
+  ],
+  "accessModeSufficient": [
+    "textual",
+    "visual"
+  ],
+  "accessibilityControl": [
+    "fullKeyboardControl",
+    "fullMouseControl"
+  ],
+  "accessibilityFeature": [
+    "alternativeText",
+    "tableOfContents"
+  ],
+  "accessibilitySummary": "Short descriptions are present but long descriptions will be needed for non-visual users",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "students"
+  },
+  "citation": {
+    "@type": "CreativeWork",
+    "name": "Community-Driven Data Analysis Training for Biology",
+    "url": "https://doi.org/10.1016/j.cels.2018.05.012"
+  },
+  "copyrightHolder": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "discussionUrl": "https://gitter.im/Galaxy-Training-Network/Lobby",
+  "headline": "Unicycler Assembly",
+  "inLanguage": {
+    "@type": "Language",
+    "name": "English",
+    "alternateName": "en"
+  },
+  "interactivityType": "mixed",
+  "isAccessibleForFree": true,
+  "license": "/blob//LICENSE.md",
+  "producer": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "provider": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "sourceOrganization": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "courseCode": "assembly / unicycler-assembly",
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Assembly",
+    "description": "DNA sequence data has become an indispensable tool for Molecular Biology & Evolutionary Biology. Study in these fields now require a genome sequence to work from. We call this a 'Reference Sequence.' We need to build a reference for each species. We do this by Genome Assembly. De novo Genome Assembly is the process of reconstructing the original DNA sequence from the fragment reads alone.",
+    "url": "https://galaxyproject.github.io//training-material/topics/assembly/"
+  },
+  "learningResourceType": "tutorial",
+  "name": "Unicycler Assembly",
+  "description": "Unicycler Assembly",
+  "coursePrerequisites": [
+    {
+      "@type": "CreativeWork",
+      "url": "https://galaxyproject.github.io//training-material/topics/introduction/",
+      "name": "Introduction to Galaxy Analyses",
+      "description": "Introduction to Galaxy Analyses",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/sequence-analysis/tutorials/quality-control/slides.html",
+      "name": "Quality Control",
+      "description": "Slides for 'Quality Control' tutorial",
+      "learningResourceType": "slides",
+      "interactivityType": "expositive",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html",
+      "name": "Quality Control",
+      "description": "Hands-on for 'Quality Control' tutorial",
+      "learningResourceType": "hands-on tutorial",
+      "interactivityType": "expositive",
+      "provider": {
+        "@type": "Organization",
+        "email": "galaxytrainingnetwork@gmail.com",
+        "name": "Galaxy Training Network",
+        "url": "https://galaxyproject.org/teach/gtn/"
+      }
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/tutorials/unicycler-assembly/tutorial.html",
+      "name": "Hands-on for 'Unicycler Assembly' tutorial",
+      "learningResourceType": "hands-on tutorial",
+      "interactivityType": "expositive"
+    },
+    {
+      "@type": "Course",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/tutorials/unicycler-assembly/slides.html",
+      "name": "Slides for 'Unicycler Assembly' tutorial",
+      "learningResourceType": "slides",
+      "interactivityType": "expositive"
+    }
+  ],
+  "mentions": [
+    [
+      {
+        "@type": "Thing",
+        "url": "/blob//topics/assembly/tutorials/unicycler-assembly/workflows/nekrut",
+        "name": "Workflow for Unicycler Assembly tutorial"
+      },
+      {
+        "@type": "Thing",
+        "url": "/blob//topics/assembly/tutorials/unicycler-assembly/workflows/delphine-l",
+        "name": "Workflow for Unicycler Assembly tutorial"
+      },
+      {
+        "@type": "Thing",
+        "url": "/blob//topics/assembly/tutorials/unicycler-assembly/workflows/slugger70",
+        "name": "Workflow for Unicycler Assembly tutorial"
+      }
+    ]
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Anton Nekrutenko"
+    },
+    {
+      "@type": "Person",
+      "name": "Delphine Lariviere"
+    },
+    {
+      "@type": "Person",
+      "name": "Simon Gladman"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "name": "Anton Nekrutenko"
+    },
+    {
+      "@type": "Person",
+      "name": "Delphine Lariviere"
+    },
+    {
+      "@type": "Person",
+      "name": "Simon Gladman"
+    }
+  ],
+  "about": [
+    {
+      "@type": "CreativeWork",
+      "name": "Assembly",
+      "description": "DNA sequence data has become an indispensable tool for Molecular Biology & Evolutionary Biology. Study in these fields now require a genome sequence to work from. We call this a 'Reference Sequence.' We need to build a reference for each species. We do this by Genome Assembly. De novo Genome Assembly is the process of reconstructing the original DNA sequence from the fragment reads alone.",
+      "url": "https://galaxyproject.github.io//training-material/topics/assembly/"
+    }
+  ],
+  "skillLevel": "Introductory"
+}
+                        </script>
+                    <tr>
+                        <td>
+                            Unicycler Assembly
+                            <div class="">
+                            
+                                
+<span class="level introductory" title="Introductory Tutorial">
+  <i class="fa fa-graduation-cap" aria-hidden="true"></i><span class="visually-hidden">level</span> <i class="fa fa-graduation-cap" aria-hidden="true"></i><span class="visually-hidden">level</span> <i class="fa fa-graduation-cap" aria-hidden="true"></i><span class="visually-hidden">level</span>
+</span>
+
+
+                            
+                            
+                                  
+                                       <span class="label label-default" style="background-color: hsl(271, 80.0%, 85%); color: #333; border: 1px solid hsl(271, 80.0%, 45%)">prokaryote</span>
+                                  
+                            
+                        </div>
+                        </td>
+                        
+                            <td>
+                                
+    <a class="topic-icon" href="/training-material/topics/assembly/tutorials/unicycler-assembly/slides.html">
+    <i class="fa fa-slideshare" aria-hidden="true"></i><span class="visually-hidden">slides</span>
+</a>
+
+
+                            </td>
+                            <td>
+                                
+    <span class="btn-group">
+        <a href="/training-material/topics/assembly/tutorials/unicycler-assembly/tutorial.html" class="btn btn-default" title="Where to run the tutorial">
+            <i class="fa fa-laptop" aria-hidden="true"></i><span class="visually-hidden">tutorial</span>
+        </a>
+        <a href="#" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+        </a>
+        <ul class="dropdown-menu">
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=fr&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Funicycler-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                FR
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ja&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Funicycler-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                JA
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=es&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Funicycler-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                ES
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=pt&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Funicycler-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                PT
+            </a>
+        
+            <a class="dropdown-item" href="https://translate.google.com/translate?hl=jp&sl=en&tl=ar&u=https%3A%2F%2Ftraining.galaxyproject.org%2Ftopics%2Fassembly%2Ftutorials%2Funicycler-assembly%2Ftutorial.html&edit-text=&act=url" title="">
+                AR
+            </a>
+        
+    </span>
+
+
+                            </td>
+
+                            
+                                <td>
+                                    
+<a class="topic-icon" href="https://doi.org/10.5281/zenodo.940733">
+    <i class="fa fa-files-o" aria-hidden="true"></i><span class="visually-hidden">zenodo_link</span>
+</a>
+
+
+                                </td>
+                                <td>
+                                    
+    <a class="topic-icon" href="https://github.com/galaxyproject/training-material/tree/master/topics/assembly/tutorials/unicycler-assembly/workflows/" title="Workflows" alt="Unicycler Assembly workflows">
+        <i class="fa fa-share-alt" aria-hidden="true"></i><span class="visually-hidden">workflow</span>
+    </a>
+
+
+                                </td>
+                                <td>
+                                    
+<a class="topic-icon" href="https://github.com/galaxyproject/training-material/tree/master/topics/assembly/tutorials/unicycler-assembly/tours/">
+    <i class="fa fa-magic" aria-hidden="true"></i><span class="visually-hidden">interactive_tour</span>
+</a>
+
+
+                                </td>
+                            
+
+                            <td>
+                                
+
+                            </td>
+                        
+                    </tr>
+                
+            
+        </table>
+
+        
+            <h2 id="docker_image">Galaxy instances</h2>
+            <p>You can use a public Galaxy instance which has been tested for the availability of the used tools. They are listed along with the tutorials above.</p>
+            
+        
+
+        <h2 id="maintainers">Maintainers</h2>
+        <p>This material is maintained by:</p>
+        
+        
+
+<a href="/training-material/hall-of-fame#slugger70" class="contributor-badge"><img src="https://avatars.githubusercontent.com/slugger70" alt="Simon Gladman">Simon Gladman</a>, <a href="/training-material/hall-of-fame#nekrut" class="contributor-badge"><img src="https://avatars.githubusercontent.com/nekrut" alt="Anton Nekrutenko">Anton Nekrutenko</a>, <a href="/training-material/hall-of-fame#delphine-l" class="contributor-badge"><img src="https://avatars.githubusercontent.com/delphine-l" alt="Delphine Lariviere">Delphine Lariviere</a>
+
+
+
+        <p>
+            <em>For any question related to this topic and the content, you can contact them or visit our <a href="https://gitter.im/Galaxy-Training-Network/Lobby">Gitter channel</a>.</em>
+        </p>
+
+        <h2 id="contributors">Contributors</h2>
+        <p>This material was contributed to by:</p>
+        
+        
+        
+        
+
+<a href="/training-material/hall-of-fame#slugger70" class="contributor-badge"><img src="https://avatars.githubusercontent.com/slugger70" alt="Simon Gladman">Simon Gladman</a>, <a href="/training-material/hall-of-fame#erasche" class="contributor-badge"><img src="https://avatars.githubusercontent.com/erasche" alt="Helena Rasche">Helena Rasche</a>, <a href="/training-material/hall-of-fame#shiltemann" class="contributor-badge"><img src="https://avatars.githubusercontent.com/shiltemann" alt="Saskia Hiltemann">Saskia Hiltemann</a>, <a href="/training-material/hall-of-fame#nekrut" class="contributor-badge"><img src="https://avatars.githubusercontent.com/nekrut" alt="Anton Nekrutenko">Anton Nekrutenko</a>, <a href="/training-material/hall-of-fame#delphine-l" class="contributor-badge"><img src="https://avatars.githubusercontent.com/delphine-l" alt="Delphine Lariviere">Delphine Lariviere</a>
+
+
+
+        
+    </section>
+</div>
+
+<footer>
+    <div class="container">
+        <p>
+            The <a href="https://galaxyproject.org/teach/gtn/">Galaxy Training Network</a>
+            provides researchers with online training materials, connects them with local trainers, and helps promoting open data analysis practices worldwide.
+        </p>
+    </div>
+</footer>
+
+
+    </body>
+    <script type="text/javascript" src="/training-material/assets/js/jquery.slim.min.js"></script>
+    <script type="text/javascript" src="/training-material/assets/js/popper.min.js"></script>
+    <script type="text/javascript" src="/training-material/assets/js/bootstrap.min.js?v=3"></script>
+    <script type="text/javascript" src="/training-material/assets/js/details-element-polyfill.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="/training-material/assets/js/bootstrap-toc.min.js"></script>
+    <script type="text/javascript" src="/training-material/assets/js/main.js"></script>
+
+    <script type="text/javascript" src="/training-material/assets/js/clipboard.min.js"></script>
+    <script type="text/javascript">
+    var snippets=document.querySelectorAll('div.highlight');
+    [].forEach.call(snippets,function(snippet){
+        snippet.firstChild.insertAdjacentHTML('beforebegin','<button class="btn btn-light" data-clipboard-snippet><i class="fa fa-copy"></i>&nbsp;Copy</button>');
+    });
+
+    var clipboardSnippets=new ClipboardJS('[data-clipboard-snippet]',{
+        target:function(trigger){return trigger.nextElementSibling;
+    }});
+    </script>
+</html>

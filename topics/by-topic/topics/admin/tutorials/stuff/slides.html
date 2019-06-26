@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+
+
+
+
+
+
+
+
+
+  <head>
+    <meta charset="utf-8">
+    <title>Server: Other</title>
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-45719423-18' , 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+    <link rel="stylesheet" href="/training-material/assets/css/slides.css">
+    <link rel="stylesheet" href="/training-material/assets/css/font-awesome.css" id="theme">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="/training-material/favicon.ico" type="image/x-icon" />
+
+    
+    
+    
+    
+    <meta name="description" content="Resources related to configuration and maintenance of Gal..." />
+    <meta property="og:title" content="Galaxy Training: Server: Other" />
+    <meta property="og:description" content="Resources related to configuration and maintenance of Gal..." />
+    <meta property="og:image" content="/training-material/assets/images/GTNLogo1000.png" />
+    <script type="application/ld+json">
+      
+
+
+{
+  "@context": "http://schema.org",
+  "@type": "Course",
+  "accessMode": [
+    "textual",
+    "visual"
+  ],
+  "accessModeSufficient": [
+    "textual",
+    "visual"
+  ],
+  "accessibilityControl": [
+    "fullKeyboardControl",
+    "fullMouseControl"
+  ],
+  "accessibilityFeature": [
+    "alternativeText",
+    "tableOfContents"
+  ],
+  "accessibilitySummary": "Short descriptions are present but long descriptions will be needed for non-visual users",
+  "audience": {
+    "@type": "EducationalAudience",
+    "educationalRole": "students"
+  },
+  "citation": {
+    "@type": "CreativeWork",
+    "name": "Community-Driven Data Analysis Training for Biology",
+    "url": "https://doi.org/10.1016/j.cels.2018.05.012"
+  },
+  "copyrightHolder": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "discussionUrl": "https://gitter.im/Galaxy-Training-Network/Lobby",
+  "headline": "Server: Other",
+  "inLanguage": {
+    "@type": "Language",
+    "name": "English",
+    "alternateName": "en"
+  },
+  "interactivityType": "mixed",
+  "isAccessibleForFree": true,
+  "license": "/blob//LICENSE.md",
+  "producer": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "provider": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "sourceOrganization": {
+    "@type": "Organization",
+    "email": "galaxytrainingnetwork@gmail.com",
+    "name": "Galaxy Training Network",
+    "url": "https://galaxyproject.org/teach/gtn/"
+  },
+  "courseCode": "admin / stuff / slides",
+  "learningResourceType": "slides",
+  "name": "Slides for 'Server: Other' tutorial",
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Server: Other",
+    "description": "Server: Other",
+    "learningResourceType": "tutorial",
+    "interactivityType": "expositive",
+    "provider": {
+      "@type": "Organization",
+      "email": "galaxytrainingnetwork@gmail.com",
+      "name": "Galaxy Training Network",
+      "url": "https://galaxyproject.org/teach/gtn/"
+    }
+  },
+  "url": "https://galaxyproject.github.io//training-material/topics/admin/tutorials/stuff/slides.html",
+  "timeRequired": "PT1H",
+  "description": "Server: Other\\nThe questions this  addresses are:\n - How to monitor a Galaxy service?\n\n\\nThe objectives are:\n - Learn about different monitoring strategies.\n - Setup and start the Galaxy reports app.\n\n",
+  "hasPart": [
+
+  ],
+  "mentions": [
+    {
+      "@type": "Thing",
+      "url": "",
+      "name": "Training data for Server: Other tutorial"
+    }
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Nate Coraor"
+    },
+    {
+      "@type": "Person",
+      "name": "Björn Grüning"
+    },
+    {
+      "@type": "Person",
+      "name": "Simon Gladman"
+    },
+    {
+      "@type": "Person",
+      "name": "Helena Rasche"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "name": "Nate Coraor"
+    },
+    {
+      "@type": "Person",
+      "name": "Björn Grüning"
+    },
+    {
+      "@type": "Person",
+      "name": "Simon Gladman"
+    },
+    {
+      "@type": "Person",
+      "name": "Helena Rasche"
+    }
+  ],
+  "about": [
+    {
+      "@type": "CreativeWork",
+      "name": "Galaxy Server administration",
+      "description": "Resources related to configuration and maintenance of Galaxy servers",
+      "url": "https://galaxyproject.github.io//training-material/topics/admin/"
+    }
+  ]
+}
+    </script>
+  </head>
+  <body>
+    <textarea id="source">
+name: inverse
+layout: true
+class: center, middle, inverse
+
+<div class="my-header"><span>
+<a href="/training-material/topics/admin" title="Return to topic page" ><i class="fa fa-level-up" aria-hidden="true"></i></a>
+
+<a class="nav-link" href="https://github.com/galaxyproject/training-material/edit/master/topics/admin/tutorials/stuff/slides.html"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+</span></div>
+
+<div class="my-footer"><span>
+
+<img src="/training-material/assets/images/GTN-60px.png" alt="Galaxy Training Network" style="height: 40px;"/>
+
+</span></div>
+
+---
+
+# Server: Other
+
+
+
+.footnote[Tip: press `P` to view the presenter notes]
+
+???
+Presenter notes contain extra information which might be useful if you
+intend to use these slides for teaching.
+
+Press `P` again to switch presenter notes off
+
+---
+
+
+
+
+
+### &lt;i class=&quot;fa fa-question-circle&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span class=&quot;visually-hidden&quot;&gt;question&lt;/span&gt; Questions
+
+
+- How to monitor a Galaxy service?
+
+
+---
+
+
+### &lt;i class=&quot;fa fa-bullseye&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span class=&quot;visually-hidden&quot;&gt;objectives&lt;/span&gt; Objectives
+
+
+- Learn about different monitoring strategies.
+
+- Setup and start the Galaxy reports app.
+
+
+---
+
+
+## Admin UI
+
+Has a lot of tools and lists that are useful for administrators of the Galaxy server.
+
+  * Data types
+  * Data tables
+  * Display applications
+  * Users, groups, roles, and quotas
+  * Running jobs
+  * Installed Tools
+  * Tool whitelist
+  * Tool errors
+
+---
+
+## Display applications
+
+The list of applications that can be used to display various datatypes.
+
+They are set in the `datatypes_conf.xml` file. For example:
+```
+  &lt;datatype extension=&quot;bam&quot; type=&quot;galaxy.datatypes.binary:Bam&quot; mimetype=&quot;application/octet-stream&quot; display_in_upload=&quot;true&quot; description=&quot;A binary file compressed in the BGZF format with a '.bam' file extension.&quot; description_url=&quot;https://wiki.galaxyproject.org/Learn/Datatypes#BAM&quot;&gt;
+      &lt;converter file=&quot;bam_to_bai.xml&quot; target_datatype=&quot;bai&quot;/&gt;
+      &lt;converter file=&quot;bam_to_bigwig_converter.xml&quot; target_datatype=&quot;bigwig&quot;/&gt;
+      &lt;display file=&quot;ucsc/bam.xml&quot; /&gt;
+      &lt;display file=&quot;ensembl/ensembl_bam.xml&quot; /&gt;
+      &lt;display file=&quot;igv/bam.xml&quot; /&gt;
+      &lt;display file=&quot;igb/bam.xml&quot; /&gt;
+      &lt;display file=&quot;iobio/bam.xml&quot; /&gt;
+  &lt;/datatype&gt;
+```
+
+[Tutorial](https://galaxyproject.org/admin/tools/external-display-applications-tutorial/) about creating new display apps.
+
+---
+## Data Types
+
+* Galaxy's method of understanding users' files.
+* Data types and converters are shipped with Galaxy.
+* Admin UI displays all available data types.
+  * Can be configured by modifying `config/datatypes_conf.xml` file.
+* Use class inheritance (`text:json` is a super class of `hivtrace`, `biom1`, `d3_hierarchy`...)
+  * Affects how tools consume datasets.
+
+???
+Some datatypes can be installed from toolshed but this practice is deprecated and discouraged.
+
+---
+
+## `datatypes_conf.xml`
+
+Config file for datatypes.
+
+```xml
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;datatypes&gt;
+  &lt;registration converters_path=&quot;lib/galaxy/datatypes/converters&quot; display_path=&quot;display_applications&quot;&gt;
+    &lt;datatype extension=&quot;ab1&quot; type=&quot;galaxy.datatypes.binary:Ab1&quot; mimetype=&quot;application/octet-stream&quot; display_in_upload=&quot;true&quot; description=&quot;A binary sequence file in 'ab1' format with a '.ab1' file extension.  You must manually select this 'File Format' when uploading the file.&quot; description_url=&quot;https://wiki.galaxyproject.org/Learn/Datatypes#Ab1&quot;/&gt;
+    &lt;datatype extension=&quot;afg&quot; type=&quot;galaxy.datatypes.assembly:Amos&quot; display_in_upload=&quot;false&quot; /&gt;
+    &lt;datatype extension=&quot;arff&quot; type=&quot;galaxy.datatypes.text:Arff&quot; mimetype=&quot;text/plain&quot; display_in_upload=&quot;True&quot; /&gt;
+    &lt;datatype extension=&quot;asn1&quot; type=&quot;galaxy.datatypes.data:GenericAsn1&quot; mimetype=&quot;text/plain&quot; display_in_upload=&quot;true&quot; /&gt;
+    &lt;datatype extension=&quot;asn1-binary&quot; type=&quot;galaxy.datatypes.binary:GenericAsn1Binary&quot; mimetype=&quot;application/octet-stream&quot; display_in_upload=&quot;true&quot; /&gt;
+    &lt;datatype extension=&quot;axt&quot; type=&quot;galaxy.datatypes.sequence:Axt&quot; display_in_upload=&quot;true&quot; description=&quot;blastz pairwise alignment format.  Each alignment block in an axt file contains three lines: a summary line and 2 sequence lines.  Blocks are separated from one another by blank lines.  The summary line contains chromosomal position and size information about the alignment. It consists of 9 required fields.&quot; description_url=&quot;https://wiki.galaxyproject.org/Learn/Datatypes#Axt&quot;/&gt;
+    &lt;datatype extension=&quot;fli&quot; type=&quot;galaxy.datatypes.tabular:FeatureLocationIndex&quot; display_in_upload=&quot;false&quot;/&gt;
+    &lt;datatype extension=&quot;bam&quot; type=&quot;galaxy.datatypes.binary:Bam&quot; mimetype=&quot;application/octet-stream&quot; display_in_upload=&quot;true&quot; description=&quot;A binary file compressed in the BGZF format with a '.bam' file extension.&quot; description_url=&quot;https://wiki.galaxyproject.org/Learn/Datatypes#BAM&quot;&gt;
+      &lt;converter file=&quot;bam_to_bai.xml&quot; target_datatype=&quot;bai&quot;/&gt;
+
+...
+
+```
+**Exercise**: Allow **Genbank** files to be specified at upload time.
+
+  * Search `/srv/galaxy/server/config/datatypes_conf.xml.sample` for Genbank
+  * Add `display_in_upload=&quot;true&quot;` to the xml tag.
+
+You'll then need to restart Galaxy.
+
+---
+
+## Tools
+
+  * **Install new tools** - Use to install tools from the configured toolsheds.
+
+  * **Monitor installation** - Shows tools currently being installed.
+
+  * **Manage tools** - To list, manage, repair, upgrade, check status, uninstall or disable currently installed tools.
+
+  * **Manage metadata** - Can help with certain types of tool problems, like incorrect lineage.
+
+  * **Manage whitelist** - Allows admins to selectively prevent tool outputs from being sanitized (allows for interactive javascript pages such as visualizations).
+
+  * **View lineage** - Shows the revision history and default versions of tools.
+
+  * **View error logs** - Will show tool problems during Galaxy startup.
+
+---
+## Other links
+
+  * **Quotas** - Allows for control of user disk space.
+  * **Local Data** - Links to the Reference Data and Data Managers UI.
+  * **Users, Groups, Roles** - Used for quotas, libraries, sharing...
+  * **Impersonate user** - Allows to switch to a user account. Has to be enabled in configuration.
+
+
+---
+# DB Shell
+
+`scripts/db_shell.py`
+
+A programmer's interface to the database. Interact with the database using Galaxy's model
+
+```console
+$ python -i scripts/db_shell.py -c config/galaxy.yml
+ &gt;&gt;&gt; new_user = User(&quot;admin@gmail.com&quot;)
+ &gt;&gt;&gt; new_user.set_password
+ &gt;&gt;&gt; sa_session.add(new_user)
+ &gt;&gt;&gt; sa_session.commit()
+ &gt;&gt;&gt; sa_session.query(User).all()
+```
+
+---
+# Runaway Jobs
+
+Tips:
+- Set job output size limit in `job_conf.xml`
+- Set job concurrency limits in `job_conf.xml`
+- Public servers
+  - Require email verification
+  - Watch for duplicates
+
+---
+# Runaway Storage
+
+Tips:
+- Set quotas
+- `tmpwatch` your job working directory
+  - `cleanup_job` in `galaxy.yml` (defaults to `always` though)
+- Set up dataset cleanup
+
+---
+# Dataset Cleanup
+
+- `scripts/cleanup_datasets/pgcleanup.py`: PostgreSQL-optimized fast cleanup script
+- `scripts/cleanup_datasets/cleanup_datasets.py`: General cleanup script
+
+---
+# Dataset Cleanup Lifecycle
+
+Mark deleted all &quot;anonymous&quot; histories not used within the last `$days` days:
+
+`python ./scripts/cleanup_datasets/pgcleanup.py -o $days -s delete_userless_histories`
+
+Remove all history exports older than `$days` days:
+
+`python ./scripts/cleanup_datasets/pgcleanup.py -o $days -s delete_exported_histories`
+
+Mark purged HDAs in histories deleted `$days` or more days ago (not user-recoverable):
+
+`python ./scripts/cleanup_datasets/pgcleanup.py -o $days -s purge_deleted_histories`
+
+---
+# Dataset Cleanup Lifecycle
+
+Mark purged individual HDAs deleted `$days` or more days ago (not user-recoverable):
+
+`python ./scripts/cleanup_datasets/pgcleanup.py -o $days -s purge_deleted_hdas`
+
+Mark datasets with all purged HDAs last updated `$days` or more days ago deleted:
+
+`python ./scripts/cleanup_datasets/pgcleanup.py -o $days -s delete_datasets`
+
+Mark purged all datasets last updated `$days` or more days ago **and remove from disk**:
+
+`python ./scripts/cleanup_datasets/pgcleanup.py -o $days -s purge_datasets`
+
+---
+
+# Backups
+
+What to back up:
+- Configs
+- Database
+- Installed shed tools and dependencies
+- Datasets (if you can...)
+
+What not to back up:
+- Anything in `database/` not mentioned above
+- Job working directories
+
+---
+
+
+
+
+---
+### &lt;i class=&quot;fa fa-key&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span class=&quot;visually-hidden&quot;&gt;keypoints&lt;/span&gt; Key points
+
+
+- Galaxy supports pluggable monitoring extensions.
+
+- Use grafana or the reports webapp to monitor your service.
+
+
+
+
+
+
+
+---
+
+## Thank you!
+
+This material is the result of a collaborative work. Thanks to the [Galaxy Training Network](https://wiki.galaxyproject.org/Teach/GTN) and all the contributors!
+
+
+<div class="contributors-line">
+
+
+<a href="/training-material/hall-of-fame#natefoo" class="contributor-badge"><img src="https://avatars.githubusercontent.com/natefoo" alt="Nate Coraor">Nate Coraor</a>, <a href="/training-material/hall-of-fame#bgruening" class="contributor-badge"><img src="https://avatars.githubusercontent.com/bgruening" alt="Björn Grüning">Björn Grüning</a>, <a href="/training-material/hall-of-fame#slugger70" class="contributor-badge"><img src="https://avatars.githubusercontent.com/slugger70" alt="Simon Gladman">Simon Gladman</a>, <a href="/training-material/hall-of-fame#erasche" class="contributor-badge"><img src="https://avatars.githubusercontent.com/erasche" alt="Helena Rasche">Helena Rasche</a>
+
+
+</div>
+
+
+
+<img src="/training-material/assets/images/GTN.png" alt="Galaxy Training Network" style="height: 100px;"/>
+
+
+
+    </textarea>
+    <script src="/training-material/assets/js/remark-latest.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create({navigation: {scroll: false,}});
+      var hljs = remark.highlighter.engine;
+    </script>
+  </body>
+</html>
